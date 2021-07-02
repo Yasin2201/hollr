@@ -1,6 +1,8 @@
 import firebase from "firebase";
 import { useEffect, useState } from "react";
 import { useAuthState } from 'react-firebase-hooks/auth';
+import Posts from "./Posts";
+
 
 const Login = () => {
     const [username, setUsername] = useState(undefined)
@@ -32,6 +34,7 @@ const Login = () => {
                 ? <div>
                     <h3>Hello, {username}!</h3>
                     <button onClick={signOut}>Sign Out</button>
+                    <Posts userUID={user.uid} />
                 </div>
                 : <div>
                     <button onClick={signIn}>Sign In</button>
