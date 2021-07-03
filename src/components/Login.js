@@ -10,6 +10,7 @@ const Login = () => {
     const [username, setUsername] = useState(undefined)
     const auth = firebase.auth()
     const [user] = useAuthState(auth)
+    const [allPosts, setAllPosts] = useState([])
 
     const signIn = () => {
         const provider = new firebase.auth.GoogleAuthProvider();
@@ -30,6 +31,17 @@ const Login = () => {
         }
     })
 
+    useEffect(() => {
+        const db = firebase.firestore()
+
+        const unsubscribe = db.collection("Posts").onSnapshot((querySnapshot) => {
+            const postData = []
+            querySnapshot.forEach((doc) => postData.push({ ...doc.data(), id: doc.id }))
+            setAllPosts(postData)
+        });
+        return unsubscribe
+    }, [])
+
     return (
         <div>
             {user
@@ -37,7 +49,11 @@ const Login = () => {
                     <h3>Hello, {username}!</h3>
                     <button onClick={signOut}>Sign Out</button>
                     <SubmitPost userUID={user.uid} username={username} />
-                    <RenderPost />
+                    {allPosts.map((post) => {
+                        return (
+                            <RenderPost post={post} key={post.id} />
+                        )
+                    })}
                 </div>
                 : <div>
                     <button onClick={signIn}>Sign In</button>
