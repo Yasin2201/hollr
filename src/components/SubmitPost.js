@@ -1,7 +1,7 @@
 import firebase from "firebase"
 import { useState } from "react"
 
-const Posts = ({ userUID }) => {
+const SubmitPost = ({ userUID, username }) => {
     const [postData, setPostData] = useState('')
     const db = firebase.firestore()
 
@@ -9,11 +9,12 @@ const Posts = ({ userUID }) => {
         setPostData(e.target.value)
     }
 
-    const submitPost = (e) => {
+    const submitNewPost = (e) => {
         e.preventDefault()
 
         db.collection('Posts').doc().set({
-            user: userUID,
+            userID: userUID,
+            username: username,
             data: postData,
             datePosted: firebase.firestore.FieldValue.serverTimestamp()
         })
@@ -22,9 +23,11 @@ const Posts = ({ userUID }) => {
         e.target.reset()
     }
 
+    // console.log(allPosts)
+
     return (
         <div>
-            <form onSubmit={submitPost}>
+            <form onSubmit={submitNewPost}>
                 <input type='text' onChange={addData} />
                 {postData.length < 1 ? <button type='submit' disabled>Post</button> : <button type='submit'>Post</button>}
             </form>
@@ -32,4 +35,4 @@ const Posts = ({ userUID }) => {
     )
 }
 
-export default Posts
+export default SubmitPost
