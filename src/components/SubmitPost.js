@@ -23,8 +23,6 @@ const SubmitPost = ({ userUID, username }) => {
         e.target.reset()
     }
 
-    // console.log(allPosts)
-
     return (
         <div>
             <form onSubmit={submitNewPost}>
