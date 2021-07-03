@@ -1,31 +1,18 @@
 import { useEffect, useState } from "react";
 import firebase from "firebase";
 
-const RenderPost = () => {
-    const [allPosts, setAllPosts] = useState([])
+const RenderPost = ({ post }) => {
 
-    useEffect(() => {
+    const deletePost = () => {
         const db = firebase.firestore()
-
-        const unsubscribe = db.collection("Posts").onSnapshot((querySnapshot) => {
-            const postData = []
-            querySnapshot.forEach((doc) => postData.push({ ...doc.data(), id: doc.id }))
-            setAllPosts(postData)
-        });
-        return unsubscribe
-    }, [])
+        db.collection('Posts').doc(post.id).delete()
+    }
 
     return (
-        <div>
-            {
-                allPosts.map((post) => {
-                    return (
-                        <div key={post.id}>
-                            <p>{post.data}</p>
-                        </div>
-                    )
-                })
-            }
+        <div key={post.id} style={{ border: '1px solid black' }}>
+            <p>{post.username}</p>
+            <p>{post.data}</p>
+            <button onClick={deletePost}>Delete</button>
         </div>
     )
 }
