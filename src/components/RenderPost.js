@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import firebase from "firebase";
 
-const RenderPost = ({ post }) => {
+const RenderPost = ({ post, userUID }) => {
 
     const deletePost = () => {
         const db = firebase.firestore()
@@ -12,7 +12,7 @@ const RenderPost = ({ post }) => {
         <div key={post.id} style={{ border: '1px solid black' }}>
             <p>{post.username}</p>
             <p>{post.data}</p>
-            <button onClick={deletePost}>Delete</button>
+            {userUID === post.userID && <button onClick={deletePost}>Delete</button>}
         </div>
     )
 }

@@ -51,7 +51,7 @@ const Login = () => {
                     <SubmitPost userUID={user.uid} username={username} />
                     {allPosts.map((post) => {
                         return (
-                            <RenderPost post={post} key={post.id} />
+                            <RenderPost post={post} userUID={user.uid} key={post.id} />
                         )
                     })}
                 </div>
