@@ -34,7 +34,7 @@ const RenderPost = ({ post, userInfo }) => {
             {showReplies ?
                 <div>
                     <button onClick={changeReplyState}>Hide Replies</button>
-                    <RenderComments postInfo={post} userInfo={userInfo} />
+                    <RenderComments postInfo={post} currentUser={userInfo} />
                 </div>
                 : <button onClick={changeReplyState}>Show Replies</button>}
         </div>

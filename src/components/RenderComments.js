@@ -1,7 +1,7 @@
 import firebase from "firebase"
 import { useEffect, useState } from "react"
 
-const RenderComments = ({ postInfo }) => {
+const RenderComments = ({ postInfo, currentUser }) => {
     const [allComments, setAllComments] = useState('')
     const [loadingComments, setLoadingComments] = useState(true)
 
@@ -32,6 +32,7 @@ const RenderComments = ({ postInfo }) => {
                         <div key={comment.id} style={{ border: '1px solid black' }}>
                             <p>{comment.username}</p>
                             <p>{comment.data}</p>
+                            {currentUser.uid === comment.userID && <button>Delete</button>}
                         </div>
                     )
                 })}
