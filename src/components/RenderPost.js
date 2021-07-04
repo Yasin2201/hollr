@@ -20,7 +20,7 @@ const RenderPost = ({ post, userUID }) => {
             {userUID === post.userID && <button onClick={deletePost}>Delete</button>}
             {comment ?
                 <div>
-                    <Comment />
+                    <Comment postInfo={post} userUID={userUID} />
                     <button onClick={changeCommentState}>cancel</button>
                 </div>
                 : <button onClick={changeCommentState}>Comment</button>}
