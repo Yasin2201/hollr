@@ -52,7 +52,7 @@ const App = () => {
                     <SubmitPost userUID={user.uid} username={username} />
                     {allPosts.map((post) => {
                         return (
-                            <RenderPost post={post} userUID={user.uid} key={post.id} />
+                            <RenderPost post={post} userInfo={user} key={post.id} />
                         )
                     })}
                 </div>
