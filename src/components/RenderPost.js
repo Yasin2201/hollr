@@ -27,14 +27,14 @@ const RenderPost = ({ post, userInfo }) => {
             {comment ?
                 <div>
                     <button onClick={changeCommentState}>cancel</button>
-                    <Comment postInfo={post} userInfo={userInfo} changeCommentState={changeCommentState} />
+                    <Comment postInfo={post} userInfo={userInfo} changeCommentState={changeCommentState} changeReplyState={changeReplyState} showReplies={showReplies} />
                 </div>
                 : <button onClick={changeCommentState}>Comment</button>}
 
             {showReplies ?
                 <div>
                     <button onClick={changeReplyState}>Hide Replies</button>
-                    <RenderComments postInfo={post} />
+                    <RenderComments postInfo={post} userInfo={userInfo} />
                 </div>
                 : <button onClick={changeReplyState}>Show Replies</button>}
         </div>

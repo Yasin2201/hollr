@@ -23,14 +23,13 @@ const RenderComments = ({ postInfo }) => {
         return unsub
     }, [postInfo.id])
 
-    console.log(allComments)
     return (
         <div>
             {loadingComments ?
                 <h3>loading</h3>
                 : allComments.map((comment) => {
                     return (
-                        <div key={comment.id}>
+                        <div key={comment.id} style={{ border: '1px solid black' }}>
                             <p>{comment.username}</p>
                             <p>{comment.data}</p>
                         </div>

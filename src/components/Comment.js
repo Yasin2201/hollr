@@ -1,7 +1,7 @@
 import firebase from "firebase"
 import { useState } from "react"
 
-const Comment = ({ postInfo, userInfo, changeCommentState }) => {
+const Comment = ({ postInfo, userInfo, changeCommentState, changeReplyState, showReplies }) => {
     const [commentData, setCommentData] = useState('')
     const db = firebase.firestore()
 
@@ -22,6 +22,7 @@ const Comment = ({ postInfo, userInfo, changeCommentState }) => {
 
         setCommentData('')
         changeCommentState()
+        showReplies && changeReplyState()
         e.target.reset()
     }
 
