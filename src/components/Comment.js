@@ -1,36 +1,20 @@
-import firebase from "firebase"
-import { useState } from "react"
+import firebase from "firebase";
 
-const Comment = ({ postInfo, userInfo, changeCommentState, changeReplyState, showReplies }) => {
-    const [commentData, setCommentData] = useState('')
-    const db = firebase.firestore()
+const Comment = ({ commentInfo, currentUser }) => {
 
-    const getCommentData = (e) => {
-        setCommentData(e.target.value)
-    }
-
-    const submitNewComment = (e) => {
-        e.preventDefault()
-
-        db.collection('Comments').doc().set({
-            orginalPostID: postInfo.id,
-            userID: userInfo.uid,
-            username: userInfo.displayName,
-            data: commentData,
-            datePosted: firebase.firestore.FieldValue.serverTimestamp()
-        })
-
-        setCommentData('')
-        changeCommentState()
-        showReplies && changeReplyState()
-        e.target.reset()
+    const deletePost = () => {
+        const db = firebase.firestore()
+        db.collection('Comments').doc(commentInfo.id).delete()
     }
 
     return (
-        <form onSubmit={submitNewComment}>
-            <input type='text' onChange={getCommentData} />
-            {commentData.length > 0 ? <button type='submit'>Post Comment</button> : <button disabled>Post Comment</button>}
-        </form>
+        <div>
+            <div key={commentInfo.id} style={{ border: '1px solid black' }}>
+                <p>{commentInfo.username}</p>
+                <p>{commentInfo.data}</p>
+                {currentUser.uid === commentInfo.userID && <button onClick={deletePost}>Delete</button>}
+            </div>
+        </div>
     )
 }
 
