@@ -1,9 +1,9 @@
 import firebase from "firebase";
 import { useState } from "react";
-import Comment from "./Comment";
+import SubmitComment from "./SubmitComment";
 import RenderComments from "./RenderComments";
 
-const RenderPost = ({ post, userInfo }) => {
+const RenderPost = ({ post, userInfo, allComments }) => {
     const [comment, setComment] = useState(false)
     const [showReplies, setShowReplies] = useState(false)
 
@@ -27,14 +27,14 @@ const RenderPost = ({ post, userInfo }) => {
             {comment ?
                 <div>
                     <button onClick={changeCommentState}>cancel</button>
-                    <Comment postInfo={post} userInfo={userInfo} changeCommentState={changeCommentState} changeReplyState={changeReplyState} showReplies={showReplies} />
+                    <SubmitComment postInfo={post} userInfo={userInfo} changeCommentState={changeCommentState} changeReplyState={changeReplyState} showReplies={showReplies} />
                 </div>
                 : <button onClick={changeCommentState}>Comment</button>}
 
             {showReplies ?
                 <div>
                     <button onClick={changeReplyState}>Hide Replies</button>
-                    <RenderComments postInfo={post} currentUser={userInfo} />
+                    <RenderComments postInfo={post} currentUser={userInfo} allComments={allComments} />
                 </div>
                 : <button onClick={changeReplyState}>Show Replies</button>}
         </div>

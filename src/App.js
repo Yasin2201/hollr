@@ -11,6 +11,7 @@ const App = () => {
     const auth = firebase.auth()
     const [user] = useAuthState(auth)
     const [allPosts, setAllPosts] = useState([])
+    const [allComments, setAllComments] = useState([])
 
     const signIn = () => {
         const provider = new firebase.auth.GoogleAuthProvider();
@@ -42,6 +43,18 @@ const App = () => {
         return unsubscribe
     }, [])
 
+    useEffect(() => {
+        const db = firebase.firestore()
+
+        const unsubscribe = db.collection("Comments").onSnapshot((querySnapshot) => {
+            const commentData = []
+            querySnapshot.forEach((doc) => commentData.push({ ...doc.data(), id: doc.id }))
+            setAllComments(commentData)
+        });
+
+        return unsubscribe
+    }, [])
+
     return (
         <div>
             <h1>holl'r</h1>
@@ -52,7 +65,7 @@ const App = () => {
                     <SubmitPost userUID={user.uid} username={username} />
                     {allPosts.map((post) => {
                         return (
-                            <RenderPost post={post} userInfo={user} key={post.id} />
+                            <RenderPost post={post} userInfo={user} key={post.id} allComments={allComments} />
                         )
                     })}
                 </div>
