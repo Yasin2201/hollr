@@ -1,6 +1,7 @@
 import firebase from "firebase";
 import { useState } from "react";
 import Comment from "./Comment";
+import RenderComments from "./RenderComments";
 
 const RenderPost = ({ post, userInfo }) => {
     const [comment, setComment] = useState(false)
@@ -25,12 +26,16 @@ const RenderPost = ({ post, userInfo }) => {
             {userInfo.uid === post.userID && <button onClick={deletePost}>Delete</button>}
             {comment ?
                 <div>
-                    <Comment postInfo={post} userInfo={userInfo} changeCommentState={changeCommentState} />
                     <button onClick={changeCommentState}>cancel</button>
+                    <Comment postInfo={post} userInfo={userInfo} changeCommentState={changeCommentState} />
                 </div>
                 : <button onClick={changeCommentState}>Comment</button>}
+
             {showReplies ?
-                <button onClick={changeReplyState}>Hide Replies</button>
+                <div>
+                    <button onClick={changeReplyState}>Hide Replies</button>
+                    <RenderComments postInfo={post} />
+                </div>
                 : <button onClick={changeReplyState}>Show Replies</button>}
         </div>
     )
