@@ -13,9 +13,9 @@ const SubmitComment = ({ postInfo, userInfo, changeCommentState, changeReplyStat
         e.preventDefault()
 
         db.collection('Comments').doc().set({
-            orginalPostID: postInfo.id,
+            originalPostID: postInfo.id,
             userID: userInfo.uid,
-            username: userInfo.displayName,
+            displayName: userInfo.displayName,
             data: commentData,
             datePosted: firebase.firestore.FieldValue.serverTimestamp()
         })

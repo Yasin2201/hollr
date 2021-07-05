@@ -6,7 +6,7 @@ const RenderComments = ({ postInfo, currentUser, allComments, showReplies, chang
     const [loadingComments, setLoadingComments] = useState(true)
 
     useEffect(() => {
-        setPostsComments(allComments.filter((comments) => comments.orginalPostID === postInfo.id))
+        setPostsComments(allComments.filter((comments) => comments.originalPostID === postInfo.id))
         setLoadingComments(false)
     }, [postInfo, allComments])
 

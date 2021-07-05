@@ -14,7 +14,7 @@ const SubmitPost = ({ userUID, username }) => {
 
         db.collection('Posts').doc().set({
             userID: userUID,
-            username: username,
+            displayName: username,
             data: postData,
             datePosted: firebase.firestore.FieldValue.serverTimestamp()
         })
