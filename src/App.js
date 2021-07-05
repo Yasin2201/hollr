@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Link, Switch } from "react-router-dom"
 import SubmitPost from './components/Posts/SubmitPost'
 import RenderPost from "./components/Posts/RenderPost";
 import Profile from "./components/Profile/Profile";
+import Sidebar from "./components/Sidebar/Sidebar";
 
 
 const App = () => {
@@ -13,6 +14,7 @@ const App = () => {
     const [user] = useAuthState(auth)
     const [allPosts, setAllPosts] = useState([])
     const [allComments, setAllComments] = useState([])
+    const [navigateProfile, setNavigateProfile] = useState(undefined)
 
     const signIn = () => {
         const provider = new firebase.auth.GoogleAuthProvider();
@@ -56,6 +58,12 @@ const App = () => {
         return unsubscribe
     }, [])
 
+    const navigateToProfile = (e) => {
+        e.target.id === user.uid ? setNavigateProfile(user.uid) : setNavigateProfile(e.target.id)
+        // console.log(y)
+    }
+    // console.log(navigateProfile)
+
     return (
         <BrowserRouter>
             <div>
@@ -66,20 +74,18 @@ const App = () => {
                     ? <div>
                         <button onClick={signOut}>Sign Out</button>
                         <h3>Hello, {username}!</h3>
-                        <Link to={`/${user.uid}`}>
-                            <button >my Profile</button>
-                        </Link>
+                        <Sidebar navigateToProfile={navigateToProfile} navigateProfile={navigateProfile} user={user} />
                         <Switch>
                             <Route exact path='/'>
                                 <SubmitPost userUID={user.uid} username={username} />
                                 {allPosts.map((post) => {
                                     return (
-                                        <RenderPost post={post} userInfo={user} key={post.id} allComments={allComments} />
+                                        <RenderPost post={post} userInfo={user} key={post.id} allComments={allComments} navigateToProfile={navigateToProfile} />
                                     )
                                 })}
                             </Route>
-                            <Route exact path={`/${user.uid}`}>
-                                <Profile userInfo={user} />
+                            <Route exact path={`/profile/${navigateProfile}`}>
+                                <Profile navigateProfile={navigateProfile} allComments={allComments} allPosts={allPosts} />
                             </Route>
                         </Switch>
                     </div>

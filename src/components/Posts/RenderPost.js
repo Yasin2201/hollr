@@ -1,9 +1,10 @@
 import firebase from "firebase";
 import { useState } from "react";
+import { Link } from "react-router-dom"
 import SubmitComment from "../Comments/SubmitComment";
 import RenderComments from "../Comments/RenderComments";
 
-const RenderPost = ({ post, userInfo, allComments }) => {
+const RenderPost = ({ post, userInfo, allComments, navigateToProfile }) => {
     const [comment, setComment] = useState(false)
     const [showReplies, setShowReplies] = useState(false)
 
@@ -21,7 +22,7 @@ const RenderPost = ({ post, userInfo, allComments }) => {
     }
     return (
         <div key={post.id} style={{ border: '1px solid black' }}>
-            <p>{post.username}</p>
+            <Link to={`/profile/${post.userID}`} onClick={navigateToProfile} id={post.userID}>{post.displayName}</Link>
             <p>{post.data}</p>
             {userInfo.uid === post.userID && <button onClick={deletePost}>Delete</button>}
             {comment ?
