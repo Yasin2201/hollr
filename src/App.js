@@ -1,9 +1,10 @@
 import firebase from "./components/firebase";
 import { useEffect, useState } from "react";
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { BrowserRouter, Route, Link, Switch } from "react-router-dom"
 import SubmitPost from './components/SubmitPost'
 import RenderPost from "./components/RenderPost";
-
+import Profile from "./components/Profile/Profile";
 
 
 const App = () => {
@@ -56,23 +57,37 @@ const App = () => {
     }, [])
 
     return (
-        <div>
-            <h1>holl'r</h1>
-            {user
-                ? <div>
-                    <h3>Hello, {username}!</h3>
-                    <button onClick={signOut}>Sign Out</button>
-                    <SubmitPost userUID={user.uid} username={username} />
-                    {allPosts.map((post) => {
-                        return (
-                            <RenderPost post={post} userInfo={user} key={post.id} allComments={allComments} />
-                        )
-                    })}
-                </div>
-                : <div>
-                    <button onClick={signIn}>Sign In</button>
-                </div>}
-        </div>
+        <BrowserRouter>
+            <div>
+                <Link to='/'>
+                    <h1 >holl'r</h1>
+                </Link>
+                {user
+                    ? <div>
+                        <button onClick={signOut}>Sign Out</button>
+                        <h3>Hello, {username}!</h3>
+                        <Link to={`/${user.uid}`}>
+                            <button >my Profile</button>
+                        </Link>
+                        <Switch>
+                            <Route exact path='/'>
+                                <SubmitPost userUID={user.uid} username={username} />
+                                {allPosts.map((post) => {
+                                    return (
+                                        <RenderPost post={post} userInfo={user} key={post.id} allComments={allComments} />
+                                    )
+                                })}
+                            </Route>
+                            <Route exact path={`/${user.uid}`}>
+                                <Profile userInfo={user} />
+                            </Route>
+                        </Switch>
+                    </div>
+                    : <div>
+                        <button onClick={signIn}>Sign In</button>
+                    </div>}
+            </div>
+        </BrowserRouter>
     )
 }
 
