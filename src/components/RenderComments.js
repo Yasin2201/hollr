@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
 import Comment from "./Comment";
 
-const RenderComments = ({ postInfo, currentUser, allComments }) => {
-    const [postsComment, setPostsComments] = useState('')
+const RenderComments = ({ postInfo, currentUser, allComments, showReplies, changeReplyState }) => {
+    const [postsComments, setPostsComments] = useState('')
     const [loadingComments, setLoadingComments] = useState(true)
 
     useEffect(() => {
@@ -14,11 +14,18 @@ const RenderComments = ({ postInfo, currentUser, allComments }) => {
         <div>
             {loadingComments
                 ? <p>Loading...</p>
-                : postsComment.map((comment) => {
-                    return (
-                        <Comment commentInfo={comment} currentUser={currentUser} key={comment.id} />
-                    )
-                })
+                : postsComments.length > 0
+                    ? showReplies
+                        ? <div>
+                            <button onClick={changeReplyState}>hide replies</button>
+                            {postsComments.map((comment) => {
+                                return (
+                                    <Comment currentUser={currentUser} commentInfo={comment} key={comment.id} />
+                                )
+                            })}
+                        </div>
+                        : <button onClick={changeReplyState}>show replies {postsComments.length}</button>
+                    : <div></div>
             }
         </div>
     )
