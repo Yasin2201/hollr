@@ -1,7 +1,7 @@
 import firebase from "firebase";
 import { useState } from "react";
-import SubmitComment from "./SubmitComment";
-import RenderComments from "./RenderComments";
+import SubmitComment from "../Comments/SubmitComment";
+import RenderComments from "../Comments/RenderComments";
 
 const RenderPost = ({ post, userInfo, allComments }) => {
     const [comment, setComment] = useState(false)

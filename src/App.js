@@ -2,8 +2,8 @@ import firebase from "./components/firebase";
 import { useEffect, useState } from "react";
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { BrowserRouter, Route, Link, Switch } from "react-router-dom"
-import SubmitPost from './components/SubmitPost'
-import RenderPost from "./components/RenderPost";
+import SubmitPost from './components/Posts/SubmitPost'
+import RenderPost from "./components/Posts/RenderPost";
 import Profile from "./components/Profile/Profile";
 
 
