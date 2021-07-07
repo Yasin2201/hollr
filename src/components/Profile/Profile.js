@@ -1,24 +1,29 @@
 import { useEffect, useState } from "react"
+import RenderPost from "../Posts/RenderPost"
 
-const Profile = ({ navigateProfile, allPosts, allComments }) => {
+const Profile = ({ currUser, allUsers, navigateProfile, allPosts, allComments }) => {
     const [loading, setLoading] = useState(false)
-    const [profileName, setProfileName] = useState()
+    const [profile, setProfile] = useState()
     const [profilesPosts, setProfilesPosts] = useState()
-    const [profilesComments, setProfilesComments] = useState()
+    // const [profilesComments, setProfilesComments] = useState()
 
     useEffect(() => {
-        setProfileName(allPosts.find((user) => user.userID === navigateProfile).displayName)
+        setProfile(allUsers.find((user) => user.uid === navigateProfile))
         setProfilesPosts(allPosts.filter((post) => post.userID === navigateProfile))
-        setProfilesComments(allComments.filter((comment) => comment.userID === navigateProfile))
         setLoading(true)
-    }, [navigateProfile, allPosts, allComments])
+    }, [allUsers, navigateProfile, allPosts, allComments])
 
-    console.log(profilesPosts)
-    console.log(profilesComments)
     return (
         <div>
             {loading
-                ? <div>{profileName}</div>
+                ? <div>
+                    <h2>{profile.displayName}</h2>
+                    {profilesPosts.map((post) => {
+                        return (
+                            <RenderPost currUser={currUser} post={post} userInfo={profile} allComments={allComments} key={post.id} />
+                        )
+                    })}
+                </div>
                 : <h2>loading...</h2>
             }
         </div>

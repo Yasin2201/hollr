@@ -9,11 +9,11 @@ import Sidebar from "./components/Sidebar/Sidebar";
 
 
 const App = () => {
-    const [username, setUsername] = useState(undefined)
     const auth = firebase.auth()
     const [user] = useAuthState(auth)
     const [allPosts, setAllPosts] = useState([])
     const [allComments, setAllComments] = useState([])
+    const [allUsers, setAllUsers] = useState([])
     const [navigateProfile, setNavigateProfile] = useState(undefined)
 
     const signIn = () => {
@@ -24,16 +24,6 @@ const App = () => {
     const signOut = () => {
         auth.signOut()
     }
-
-    const getUsername = () => {
-        setUsername(user.displayName)
-    }
-
-    useEffect(() => {
-        if (user !== null) {
-            getUsername()
-        }
-    })
 
     useEffect(() => {
         const db = firebase.firestore()
@@ -54,15 +44,34 @@ const App = () => {
             querySnapshot.forEach((doc) => commentData.push({ ...doc.data(), id: doc.id }))
             setAllComments(commentData)
         });
-
         return unsubscribe
     }, [])
 
+    useEffect(() => {
+        const db = firebase.firestore()
+
+        const unsubscribe = db.collection("Users").onSnapshot((querySnapshot) => {
+            const userData = []
+            querySnapshot.forEach((doc) => userData.push({ ...doc.data(), uid: doc.id }))
+            setAllUsers(userData)
+        });
+        return unsubscribe
+    }, [])
+
+    useEffect(() => {
+        const db = firebase.firestore()
+
+        if (user !== null) {
+            const unsubscribe = db.collection('Users').doc(user.uid).set({
+                displayName: user.displayName
+            })
+            return unsubscribe
+        }
+    }, [user])
+
     const navigateToProfile = (e) => {
-        e.target.id === user.uid ? setNavigateProfile(user.uid) : setNavigateProfile(e.target.id)
-        // console.log(y)
+        setNavigateProfile(allUsers.find((user) => user.uid === e.target.id).uid)
     }
-    // console.log(navigateProfile)
 
     return (
         <BrowserRouter>
@@ -73,19 +82,19 @@ const App = () => {
                 {user
                     ? <div>
                         <button onClick={signOut}>Sign Out</button>
-                        <h3>Hello, {username}!</h3>
+                        <h3>Hello, {user.displayName}!</h3>
                         <Sidebar navigateToProfile={navigateToProfile} navigateProfile={navigateProfile} user={user} />
                         <Switch>
                             <Route exact path='/'>
-                                <SubmitPost userUID={user.uid} username={username} />
+                                <SubmitPost userUID={user.uid} username={user.displayName} />
                                 {allPosts.map((post) => {
                                     return (
-                                        <RenderPost post={post} userInfo={user} key={post.id} allComments={allComments} navigateToProfile={navigateToProfile} />
+                                        <RenderPost post={post} currUser={user} userInfo={user} key={post.id} allComments={allComments} navigateToProfile={navigateToProfile} />
                                     )
                                 })}
                             </Route>
                             <Route exact path={`/profile/${navigateProfile}`}>
-                                <Profile navigateProfile={navigateProfile} allComments={allComments} allPosts={allPosts} />
+                                <Profile currUser={user} allUsers={allUsers} navigateProfile={navigateProfile} allComments={allComments} allPosts={allPosts} />
                             </Route>
                         </Switch>
                     </div>
