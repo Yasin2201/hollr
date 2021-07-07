@@ -66,7 +66,7 @@ const RenderPost = ({ currUser, post, userInfo, allComments, navigateToProfile }
                     <SubmitComment postInfo={post} userInfo={userInfo} changeCommentState={changeCommentState} changeReplyState={changeReplyState} showReplies={showReplies} />
                 </div>
                 : <button onClick={changeCommentState}>Comment</button>}
-            <RenderComments postInfo={post} currentUser={currUser} allComments={allComments} changeReplyState={changeReplyState} showReplies={showReplies} />
+            <RenderComments postInfo={post} currentUser={currUser} allComments={allComments} navigateToProfile={navigateToProfile} changeReplyState={changeReplyState} showReplies={showReplies} />
         </div>
     )
 }
