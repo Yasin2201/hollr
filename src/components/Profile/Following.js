@@ -20,7 +20,18 @@ const Following = ({ allUsers, currUser, currProfile }) => {
 
     }, [db, currProfile])
 
-
+    const followAction = () => {
+        if (!followState) {
+            db.collection("Users").doc(currProfile.uid).collection('Following').doc(currUser.uid).set({
+                following: !followState
+            });
+            setFollowState(!followState)
+        } else {
+            db.collection("Users").doc(currProfile.uid).collection('Following').doc(currUser.uid).delete()
+            setFollowState(!followState)
+        }
+        console.log(following)
+    }
     return (
         <div>
 
