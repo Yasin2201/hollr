@@ -33,7 +33,10 @@ const Following = ({ allUsers, currUser, currProfile }) => {
     }
     return (
         <div>
-            {followState ? <button onClick={followAction}>Unfollow</button> : <button onClick={followAction}>Follow</button>}
+            {currUser.uid === currProfile.uid
+                ? <div></div>
+                : followState ? <button onClick={followAction}>Unfollow</button> : <button onClick={followAction}>Follow</button>
+            }
             Following 10
         </div>
     )
