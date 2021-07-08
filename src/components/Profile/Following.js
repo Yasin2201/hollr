@@ -15,10 +15,11 @@ const Following = ({ allUsers, currUser, currProfile }) => {
                     following.push(doc.id)
                 });
                 setFollowing(following)
+                setFollowState(following.includes(currUser.uid))
             });
         return unsubscribe
 
-    }, [db, currProfile])
+    }, [db, currProfile, currUser])
 
     const followAction = () => {
         if (!followState) {
@@ -31,6 +32,9 @@ const Following = ({ allUsers, currUser, currProfile }) => {
             setFollowState(!followState)
         }
     }
+
+    console.log(following)
+
     return (
         <div>
             {currUser.uid === currProfile.uid
