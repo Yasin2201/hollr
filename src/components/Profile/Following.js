@@ -30,11 +30,11 @@ const Following = ({ allUsers, currUser, currProfile }) => {
             db.collection("Users").doc(currProfile.uid).collection('Following').doc(currUser.uid).delete()
             setFollowState(!followState)
         }
-        console.log(following)
     }
     return (
         <div>
-
+            {followState ? <button onClick={followAction}>Unfollow</button> : <button onClick={followAction}>Follow</button>}
+            Following 10
         </div>
     )
 }
