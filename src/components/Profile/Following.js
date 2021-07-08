@@ -33,15 +33,13 @@ const Following = ({ allUsers, currUser, currProfile }) => {
         }
     }
 
-    console.log(following)
-
     return (
         <div>
             {currUser.uid === currProfile.uid
                 ? <div></div>
                 : followState ? <button onClick={followAction}>Unfollow</button> : <button onClick={followAction}>Follow</button>
             }
-            Following 10
+            <h3>Follower: XX || Following: {following.length}</h3>
         </div>
     )
 }
