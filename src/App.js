@@ -62,6 +62,17 @@ const App = () => {
         const db = firebase.firestore()
 
         if (user !== null) {
+            const unsubscribe = db.collection("Users").doc(user.uid)
+                .collection("Following").doc(user.uid)
+            return unsubscribe
+        }
+
+    }, [user])
+
+    useEffect(() => {
+        const db = firebase.firestore()
+
+        if (user !== null) {
             const unsubscribe = db.collection('Users').doc(user.uid).set({
                 displayName: user.displayName
             })
@@ -94,7 +105,7 @@ const App = () => {
                                 })}
                             </Route>
                             <Route exact path={`/profile/${navigateProfile}`}>
-                                <Profile currUser={user} allUsers={allUsers} navigateProfile={navigateProfile} allComments={allComments} allPosts={allPosts} />
+                                <Profile currUser={user} allUsers={allUsers} navigateProfile={navigateProfile} allComments={allComments} allPosts={allPosts} navigateToProfile={navigateToProfile} />
                             </Route>
                         </Switch>
                     </div>
