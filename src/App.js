@@ -63,7 +63,7 @@ const App = () => {
 
         if (user !== null) {
             const unsubscribe = db.collection("Users").doc(user.uid)
-                .collection("Following").doc(user.uid)
+                .collection("Followers").doc(user.uid)
             return unsubscribe
         }
 
