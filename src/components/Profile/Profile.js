@@ -4,6 +4,7 @@ import RenderPost from "../Posts/RenderPost"
 import Followers from "./Followers"
 import Following from "./Following"
 
+
 const Profile = ({ currUser, allUsers, navigateProfile, allPosts, allComments, navigateToProfile }) => {
     const [loading, setLoading] = useState(false)
     const [profile, setProfile] = useState()

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 import SubmitComment from "../Comments/SubmitComment";
 import RenderComments from "../Comments/RenderComments";
 
-const RenderPost = ({ currUser, post, userInfo, allComments, navigateToProfile }) => {
+const RenderPost = ({ currUser, post, allComments, navigateToProfile }) => {
     const [comment, setComment] = useState(false)
     const [showReplies, setShowReplies] = useState(false)
     const [edit, setEdit] = useState(false)
@@ -63,7 +63,7 @@ const RenderPost = ({ currUser, post, userInfo, allComments, navigateToProfile }
             {comment ?
                 <div>
                     <button onClick={changeCommentState}>cancel</button>
-                    <SubmitComment postInfo={post} currUser={currUser} currProfile={userInfo} changeCommentState={changeCommentState} changeReplyState={changeReplyState} showReplies={showReplies} />
+                    <SubmitComment postInfo={post} currUser={currUser} changeCommentState={changeCommentState} changeReplyState={changeReplyState} showReplies={showReplies} />
                 </div>
                 : <button onClick={changeCommentState}>Comment</button>}
             <RenderComments postInfo={post} currentUser={currUser} allComments={allComments} navigateToProfile={navigateToProfile} changeReplyState={changeReplyState} showReplies={showReplies} />

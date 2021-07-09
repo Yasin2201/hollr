@@ -1,7 +1,7 @@
 import firebase from "firebase"
 import { useState } from "react"
 
-const SubmitComment = ({ postInfo, currUser, currProfile, changeCommentState, changeReplyState, showReplies }) => {
+const SubmitComment = ({ postInfo, currUser, changeCommentState, changeReplyState, showReplies }) => {
     const [commentData, setCommentData] = useState('')
     const db = firebase.firestore()
 
@@ -25,7 +25,7 @@ const SubmitComment = ({ postInfo, currUser, currProfile, changeCommentState, ch
         showReplies && changeReplyState()
         e.target.reset()
     }
-    console.log(currProfile.uid)
+
     return (
         <form onSubmit={submitNewComment}>
             <input type='text' onChange={getCommentData} />
