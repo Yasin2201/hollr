@@ -3,7 +3,7 @@ import firebase from "firebase"
 import UsersModal from "./UsersModal"
 
 
-const Following = ({ navigateProfile, profile, currUser }) => {
+const Following = ({ navigateProfile, profile, currUser, allUsers }) => {
     const [following, setFollowing] = useState([])
     const [modalState, setModalState] = useState(false)
 
@@ -29,7 +29,7 @@ const Following = ({ navigateProfile, profile, currUser }) => {
     return (
         <div>
             <h3 onClick={usersModalClick}>Following: {following.length}</h3>
-            {modalState && <UsersModal usersModalClick={usersModalClick} userModalData={following} />}
+            {modalState && <UsersModal usersModalClick={usersModalClick} userModalData={following} allUsers={allUsers} />}
         </div>
     )
 }
