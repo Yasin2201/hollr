@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react"
 import firebase from "firebase"
-
+import UsersModal from "./UsersModal"
 
 const Followers = ({ navigateProfile, profile, currUser, setFollowButton }) => {
     const [followers, setFollowers] = useState([])
-    const db = firebase.firestore()
+    const [modalState, setModalState] = useState(false)
 
     useEffect(() => {
+        const db = firebase.firestore()
+
         const unsubscribe = db.collection("Users").doc(navigateProfile)
             .collection('Followers').onSnapshot((querySnapshot) => {
                 const followersArr = []
@@ -18,11 +20,16 @@ const Followers = ({ navigateProfile, profile, currUser, setFollowButton }) => {
             });
         return unsubscribe
 
-    }, [db, profile, currUser])
+    }, [navigateProfile, profile, currUser, setFollowButton])
+
+    const usersModalClick = () => {
+        setModalState(!modalState)
+    }
 
     return (
         <div>
-            <h3 onClick={() => console.log(followers)}>Followers: {followers.length}</h3>
+            <h3 onClick={usersModalClick}>Followers: {followers.length}</h3>
+            {modalState && <UsersModal usersModalClick={usersModalClick} userModalData={followers} />}
         </div>
     )
 }

@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react"
 import firebase from "firebase"
+import UsersModal from "./UsersModal"
+
 
 const Following = ({ navigateProfile, profile, currUser }) => {
     const [following, setFollowing] = useState([])
-    const db = firebase.firestore()
+    const [modalState, setModalState] = useState(false)
 
     useEffect(() => {
+        const db = firebase.firestore()
+
         const unsubscribe = db.collection("Users").doc(navigateProfile)
             .collection('Following').onSnapshot((querySnapshot) => {
                 const isFollowingArr = []
@@ -16,11 +20,16 @@ const Following = ({ navigateProfile, profile, currUser }) => {
             });
         return unsubscribe
 
-    }, [db, profile, currUser])
+    }, [navigateProfile, profile, currUser])
+
+    const usersModalClick = () => {
+        setModalState(!modalState)
+    }
 
     return (
         <div>
-            <h3 onClick={() => console.log(following)}>Following: {following.length}</h3>
+            <h3 onClick={usersModalClick}>Following: {following.length}</h3>
+            {modalState && <UsersModal usersModalClick={usersModalClick} userModalData={following} />}
         </div>
     )
 }
