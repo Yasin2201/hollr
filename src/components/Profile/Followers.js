@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import firebase from "firebase"
 import UsersModal from "./UsersModal"
 
-const Followers = ({ navigateProfile, profile, currUser, setFollowButton, allUsers }) => {
+const Followers = ({ navigateProfile, profile, currUser, setFollowButton, allUsers, navigateToProfile }) => {
     const [followers, setFollowers] = useState([])
     const [modalState, setModalState] = useState(false)
 
@@ -29,7 +29,7 @@ const Followers = ({ navigateProfile, profile, currUser, setFollowButton, allUse
     return (
         <div>
             <h3 onClick={usersModalClick}>Followers: {followers.length}</h3>
-            {modalState && <UsersModal usersModalClick={usersModalClick} userModalData={followers} allUsers={allUsers} />}
+            {modalState && <UsersModal usersModalClick={usersModalClick} userModalData={followers} allUsers={allUsers} navigateToProfile={navigateToProfile} />}
         </div>
     )
 }

@@ -46,8 +46,8 @@ const Profile = ({ currUser, allUsers, navigateProfile, allPosts, allComments, n
                     {currUser.uid === profile.uid
                         ? <div></div>
                         : followState ? <button onClick={followAction}>Unfollow</button> : <button onClick={followAction}>Follow</button>}
-                    <Followers navigateProfile={navigateProfile} profile={profile} currUser={currUser} setFollowButton={setFollowButton} allUsers={allUsers} />
-                    <Following navigateProfile={navigateProfile} profile={profile} currUser={currUser} allUsers={allUsers} />
+                    <Followers navigateProfile={navigateProfile} profile={profile} currUser={currUser} setFollowButton={setFollowButton} allUsers={allUsers} navigateToProfile={navigateToProfile} />
+                    <Following navigateProfile={navigateProfile} profile={profile} currUser={currUser} allUsers={allUsers} navigateToProfile={navigateToProfile} />
 
                     {profilesPosts.map((post) => {
                         return (

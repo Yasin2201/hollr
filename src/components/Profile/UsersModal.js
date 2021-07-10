@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
-const UsersModal = ({ usersModalClick, userModalData, allUsers }) => {
+const UsersModal = ({ usersModalClick, userModalData, allUsers, navigateToProfile }) => {
 
     const [userModalList, setUserModalList] = useState([])
 
@@ -14,13 +15,18 @@ const UsersModal = ({ usersModalClick, userModalData, allUsers }) => {
         setUserModalList(userModalList)
     }, [userModalData, allUsers])
 
+    const onLinkClick = (e) => {
+        usersModalClick()
+        navigateToProfile(e)
+    }
+
     return (
         <div>
             <button onClick={usersModalClick}>Close</button>
             {userModalList.map((user) => {
                 return (
                     <div key={user.uid}>
-                        {user.displayName}
+                        <Link to={`/profile/${user.uid}`} id={user.uid} onClick={onLinkClick}> {user.displayName} </Link>
                     </div>
                 )
             })}
