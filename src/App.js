@@ -107,7 +107,6 @@ const App = () => {
                         </Switch>
                     </div>
                     : <div>
-                        <Navbar />
                         <button onClick={signIn}>Sign In</button>
                     </div>}
             </div>
