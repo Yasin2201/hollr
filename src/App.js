@@ -1,11 +1,12 @@
 import firebase from "./components/firebase";
 import { useEffect, useState } from "react";
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { BrowserRouter, Route, Link, Switch } from "react-router-dom"
+import { BrowserRouter, Route, Switch } from "react-router-dom"
 import SubmitPost from './components/Posts/SubmitPost'
 import RenderPost from "./components/Posts/RenderPost";
 import Profile from "./components/Profile/Profile";
 import Sidebar from "./components/Sidebar/Sidebar";
+import Navbar from "./components/Navbar";
 
 
 const App = () => {
@@ -87,13 +88,9 @@ const App = () => {
     return (
         <BrowserRouter>
             <div>
-                <Link to='/'>
-                    <h1 >holl'r</h1>
-                </Link>
                 {user
                     ? <div>
-                        <button onClick={signOut}>Sign Out</button>
-                        <h3>Hello, {user.displayName}!</h3>
+                        <Navbar user={user} signOut={signOut} />
                         <Sidebar navigateToProfile={navigateToProfile} navigateProfile={navigateProfile} user={user} />
                         <Switch>
                             <Route exact path='/'>
@@ -110,6 +107,7 @@ const App = () => {
                         </Switch>
                     </div>
                     : <div>
+                        <Navbar />
                         <button onClick={signIn}>Sign In</button>
                     </div>}
             </div>

@@ -22,7 +22,7 @@ const SubmitComment = ({ postInfo, currUser, changeCommentState, changeReplyStat
 
         setCommentData('')
         changeCommentState()
-        showReplies && changeReplyState()
+        !showReplies && changeReplyState()
         e.target.reset()
     }
 
