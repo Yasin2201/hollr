@@ -1,0 +1,14 @@
+#main {
+    background-color: #003049;
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 100px 1fr;
+    grid-template-columns: 0.3fr 1fr 0.3fr;
+    grid-template-areas: 
+    "nav nav nav"
+    "sidebar allPosts follow";
+}
+
+#allPosts {
+    grid-area: allPosts;
+}

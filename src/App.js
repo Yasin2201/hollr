@@ -7,7 +7,7 @@ import RenderPost from "./components/Posts/RenderPost";
 import Profile from "./components/Profile/Profile";
 import Sidebar from "./components/Sidebar/Sidebar";
 import Navbar from "./components/Navbar";
-
+import './components/Styles/App.css'
 
 const App = () => {
     const auth = firebase.auth()
@@ -89,17 +89,19 @@ const App = () => {
         <BrowserRouter>
             <div>
                 {user
-                    ? <div>
+                    ? <div id="main">
                         <Navbar user={user} signOut={signOut} />
                         <Sidebar navigateToProfile={navigateToProfile} navigateProfile={navigateProfile} user={user} />
                         <Switch>
                             <Route exact path='/'>
                                 <SubmitPost userUID={user.uid} username={user.displayName} />
-                                {allPosts.map((post) => {
-                                    return (
-                                        <RenderPost post={post} currUser={user} userInfo={user} key={post.id} allComments={allComments} navigateToProfile={navigateToProfile} />
-                                    )
-                                })}
+                                <div id='allPosts'>
+                                    {allPosts.map((post) => {
+                                        return (
+                                            <RenderPost post={post} currUser={user} userInfo={user} key={post.id} allComments={allComments} navigateToProfile={navigateToProfile} />
+                                        )
+                                    })}
+                                </div>
                             </Route>
                             <Route exact path={`/profile/${navigateProfile}`}>
                                 <Profile currUser={user} allUsers={allUsers} navigateProfile={navigateProfile} allComments={allComments} allPosts={allPosts} navigateToProfile={navigateToProfile} />
