@@ -1,0 +1,42 @@
+#submitPostForm {
+    background-color: #003c5c;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    grid-area: allPosts;
+    align-items: flex-end;
+    border: solid 1px rgba(255, 255, 255, 0.2);
+}
+
+.submitPostBtn {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 1em;
+    width: 130px;
+    height: 40px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    border-radius: 20px;
+    border: none;
+    background-color: rgb(90, 71, 202);
+    color: rgb(202, 202, 202);
+}
+.submitPostBtn:hover, .submitPostBtn:active {
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.507);
+}
+
+.submitPostBtn:disabled{
+    background-color: rgba(96, 77, 204, 0.507);
+    color: rgba(255, 255, 255, 0.199);
+    box-shadow: none;
+}
+
+textarea {
+    background-color: #003c5c;
+    color: rgb(202, 202, 202);
+    font-size: 14px;
+    border: none;
+    outline: none;
+    resize: none;
+    width: 550px;
+    height: 70px;
+}

@@ -1,5 +1,6 @@
 import firebase from "firebase"
 import { useState } from "react"
+import '../Styles/SubmitPost.css'
 
 const SubmitPost = ({ userUID, username }) => {
     const [postData, setPostData] = useState('')
@@ -24,12 +25,14 @@ const SubmitPost = ({ userUID, username }) => {
     }
 
     return (
-        <div>
-            <form onSubmit={submitNewPost}>
-                <input type='text' onChange={addData} />
-                {postData.length < 1 ? <button type='submit' disabled>Post</button> : <button type='submit'>Post</button>}
-            </form>
-        </div>
+        <form onSubmit={submitNewPost} id="submitPostForm">
+            <textarea type='text' maxLength="250" onChange={addData} placeholder="How are you feeling?" />
+            {
+                postData.length < 1
+                    ? <button className='submitPostBtn' type='submit' disabled>Post</button>
+                    : <button className='submitPostBtn' type='submit'>Post</button>
+            }
+        </form>
     )
 }
 
