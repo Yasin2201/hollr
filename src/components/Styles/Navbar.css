@@ -1,6 +1,8 @@
 #navbar {
     grid-area: nav;
+    height: 100px;
     position: sticky;
+    top: 0;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     display: grid;
     background-color: #003049;
