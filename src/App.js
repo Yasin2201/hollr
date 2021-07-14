@@ -94,8 +94,8 @@ const App = () => {
                         <Sidebar navigateToProfile={navigateToProfile} navigateProfile={navigateProfile} user={user} />
                         <Switch>
                             <Route exact path='/'>
-                                <SubmitPost userUID={user.uid} username={user.displayName} />
                                 <div id='allPosts'>
+                                    <SubmitPost userUID={user.uid} username={user.displayName} />
                                     {allPosts.map((post) => {
                                         return (
                                             <RenderPost post={post} currUser={user} userInfo={user} key={post.id} allComments={allComments} navigateToProfile={navigateToProfile} />
