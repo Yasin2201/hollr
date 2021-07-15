@@ -32,6 +32,25 @@
     justify-content: space-around;
 }
 
+.repliesBtn {
+    display: flex;
+    align-items: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 15px;
+    color: whitesmoke;
+}
+
+img {
+    width: 20px;
+    margin: 5px;
+    filter: invert();
+}
+
+img:hover, img:active {
+    filter: none;
+    transition: 0.2s;
+}
+
 .showReplies {
     width: 100%;
 }

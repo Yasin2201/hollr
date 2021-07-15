@@ -2,6 +2,8 @@ import firebase from "firebase";
 import { useState } from "react";
 import { Link } from "react-router-dom"
 import RenderComments from "../Comments/RenderComments";
+import deleteIcon from '../Assets/delete.svg'
+import editIcon from '../Assets/edit.svg'
 
 const RenderPost = ({ currUser, post, allComments, navigateToProfile }) => {
     const [showReplies, setShowReplies] = useState(false)
@@ -46,9 +48,9 @@ const RenderPost = ({ currUser, post, allComments, navigateToProfile }) => {
                                     <input type='text' onChange={addEditData} />
                                     <button onClick={onEditSubmit}>Submit Edit</button>
                                 </div>
-                                : <button className='post-action-buttons' onClick={onEdit}>e</button>
+                                : <img src={editIcon} alt='edit' className='post-action-buttons' onClick={onEdit} />
                         }
-                        <button className='post-action-buttons' onClick={onDelete}>d</button>
+                        <img src={deleteIcon} alt='delete' className='post-action-buttons' onClick={onDelete} />
                     </div>
                 }
             </div>

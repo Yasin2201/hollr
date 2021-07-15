@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import Comment from "./Comment";
 import SubmitComment from "./SubmitComment";
 import '../Styles/Post.css'
+import commentIcon from '../Assets/speech-bubble.svg'
 
 const RenderComments = ({ postInfo, currentUser, allComments, navigateToProfile, showReplies, changeReplyState }) => {
     const [postsComments, setPostsComments] = useState('')
@@ -16,10 +17,11 @@ const RenderComments = ({ postInfo, currentUser, allComments, navigateToProfile,
         <div className='showReplies'>
             {loadingComments
                 ? <p>Loading...</p>
-                : <div className='repliesBtn'>{showReplies
-                    ? <button onClick={changeReplyState}>hide replies</button>
-                    : <button onClick={changeReplyState}> comments {postsComments.length > 0 && postsComments.length}</button>}</div>
-            }
+                : <div className='repliesBtn'>
+                    <img src={commentIcon} alt='comment' onClick={changeReplyState} />
+                    <span >{postsComments.length > 0 && postsComments.length}</span>
+                </div>}
+
             {showReplies
                 &&
                 <div>
@@ -29,9 +31,8 @@ const RenderComments = ({ postInfo, currentUser, allComments, navigateToProfile,
                             <Comment currentUser={currentUser} navigateToProfile={navigateToProfile} commentInfo={comment} key={comment.id} />
                         )
                     })}
-                </div>
-            }
-        </div>
+                </div>}
+        </div >
     )
 }
 
