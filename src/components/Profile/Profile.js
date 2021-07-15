@@ -42,11 +42,14 @@ const Profile = ({ currUser, allUsers, navigateProfile, allPosts, allComments, n
         <div className="profile">
             {loading
                 ? <div>
-                    <h1 className='profile-username'>{profile.displayName}</h1>
-                    {currUser.uid === profile.uid
-                        ? null
-                        : followState ? <button onClick={followAction}>Unfollow</button> : <button onClick={followAction}>Follow</button>}
-
+                    <div className='profile-top'>
+                        <h1 className='profile-username'>{profile.displayName}</h1>
+                        {
+                            currUser.uid === profile.uid
+                                ? null
+                                : followState ? <button className='followBtn' onClick={followAction}>Unfollow</button> : <button className='followBtn' onClick={followAction}>Follow</button>
+                        }
+                    </div>
                     <div className='followers-panel'>
                         <Followers navigateProfile={navigateProfile} profile={profile} currUser={currUser} setFollowButton={setFollowButton} allUsers={allUsers} navigateToProfile={navigateToProfile} />
                         <Following navigateProfile={navigateProfile} profile={profile} currUser={currUser} allUsers={allUsers} navigateToProfile={navigateToProfile} />
