@@ -21,15 +21,18 @@ const UsersModal = ({ usersModalClick, userModalData, allUsers, navigateToProfil
     }
 
     return (
-        <div>
-            <button onClick={usersModalClick}>Close</button>
-            {userModalList.map((user) => {
-                return (
-                    <div key={user.uid}>
-                        <Link to={`/profile/${user.uid}`} id={user.uid} onClick={onLinkClick}> {user.displayName} </Link>
-                    </div>
-                )
-            })}
+        <div className='users-modal'>
+            <button className="close-modal-btn" onClick={usersModalClick}>Close</button>
+            <div className='allUsers'>
+                {userModalList.map((user) => {
+                    return (
+                        <div key={user.uid} className='users-profile'>
+                            <Link className='username' to={`/profile/${user.uid}`} id={user.uid} onClick={onLinkClick}> {user.displayName} </Link>
+                            <hr />
+                        </div>
+                    )
+                })}
+            </div>
         </div>
     )
 }
