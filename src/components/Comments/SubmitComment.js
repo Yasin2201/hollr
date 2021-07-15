@@ -1,7 +1,9 @@
 import firebase from "firebase"
 import { useState } from "react"
+import '../Styles/Post.css'
 
-const SubmitComment = ({ postInfo, currUser, changeCommentState, changeReplyState, showReplies }) => {
+
+const SubmitComment = ({ postInfo, currUser, changeReplyState, showReplies }) => {
     const [commentData, setCommentData] = useState('')
     const db = firebase.firestore()
 
@@ -21,15 +23,14 @@ const SubmitComment = ({ postInfo, currUser, changeCommentState, changeReplyStat
         })
 
         setCommentData('')
-        changeCommentState()
         !showReplies && changeReplyState()
         e.target.reset()
     }
 
     return (
-        <form onSubmit={submitNewComment}>
-            <input type='text' onChange={getCommentData} />
-            {commentData.length > 0 ? <button type='submit'>Post Comment</button> : <button disabled>Post Comment</button>}
+        <form onSubmit={submitNewComment} className="submitCommentForm">
+            <textarea id="commentTextArea" type='text' maxLength="220" placeholder="Share your opinion!" onChange={getCommentData} />
+            {commentData.length > 0 ? <button className='postCommentBtn' type='submit'>Comment</button> : <button className='postCommentBtn' disabled>Comment</button>}
         </form>
     )
 }

@@ -3,9 +3,9 @@ import { useState } from "react";
 import { Link } from "react-router-dom"
 import SubmitComment from "../Comments/SubmitComment";
 import RenderComments from "../Comments/RenderComments";
+import '../Styles/Post.css'
 
 const RenderPost = ({ currUser, post, allComments, navigateToProfile }) => {
-    const [comment, setComment] = useState(false)
     const [showReplies, setShowReplies] = useState(false)
     const [edit, setEdit] = useState(false)
     const [editData, setEditData] = useState('')
@@ -30,43 +30,34 @@ const RenderPost = ({ currUser, post, allComments, navigateToProfile }) => {
         setEdit(!edit)
     }
 
-    const changeCommentState = () => {
-        setComment(!comment)
-    }
-
     const changeReplyState = () => {
         setShowReplies(!showReplies)
     }
 
     return (
-        <div key={post.id} style={{ border: '1px solid black' }}>
-            <Link to={`/profile/${post.userID}`} onClick={navigateToProfile} id={post.userID}>{post.displayName}</Link>
-            <p>{post.data}</p>
-
-            {
-                currUser.uid === post.userID &&
-                <div>
-                    <button onClick={onDelete}>Delete</button>
-                    {
-                        edit
-                            ? <div>
-                                <button onClick={onEdit}>Cancel Edit</button>
-                                <input type='text' onChange={addEditData} />
-                                <button onClick={onEditSubmit}>Submit Edit</button>
-                            </div>
-                            : <button onClick={onEdit}>Edit</button>
-                    }
-
-                </div>
-            }
-
-            {comment ?
-                <div>
-                    <button onClick={changeCommentState}>cancel</button>
-                    <SubmitComment postInfo={post} currUser={currUser} changeCommentState={changeCommentState} changeReplyState={changeReplyState} showReplies={showReplies} />
-                </div>
-                : <button onClick={changeCommentState}>Comment</button>}
-            <RenderComments postInfo={post} currentUser={currUser} allComments={allComments} navigateToProfile={navigateToProfile} changeReplyState={changeReplyState} showReplies={showReplies} />
+        <div className='post' key={post.id}>
+            <div className='post-top'>
+                <Link to={`/profile/${post.userID}`} onClick={navigateToProfile} id={post.userID} className='username'>{post.displayName}</Link>
+                {
+                    currUser.uid === post.userID &&
+                    <div className='post-top-right'>
+                        {
+                            edit
+                                ? <div>
+                                    <button onClick={onEdit}>Cancel Edit</button>
+                                    <input type='text' onChange={addEditData} />
+                                    <button onClick={onEditSubmit}>Submit Edit</button>
+                                </div>
+                                : <button className='post-action-buttons' onClick={onEdit}>e</button>
+                        }
+                        <button className='post-action-buttons' onClick={onDelete}>d</button>
+                    </div>
+                }
+            </div>
+            <p className='postData'>{post.data}</p>
+            <div className='post-bottom'>
+                <RenderComments postInfo={post} currentUser={currUser} allComments={allComments} navigateToProfile={navigateToProfile} changeReplyState={changeReplyState} showReplies={showReplies} />
+            </div>
         </div>
     )
 }

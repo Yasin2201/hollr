@@ -1,7 +1,7 @@
 import firebase from "firebase";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-
+import '../Styles/Post.css'
 const Comment = ({ commentInfo, currentUser, navigateToProfile }) => {
     const [edit, setEdit] = useState(false)
     const [editData, setEditData] = useState('')
@@ -27,8 +27,8 @@ const Comment = ({ commentInfo, currentUser, navigateToProfile }) => {
     }
 
     return (
-        <div>
-            <div key={commentInfo.id} style={{ border: '1px solid black' }}>
+        <div className='comments'>
+            <div key={commentInfo.id} >
                 <Link to={`/profile/${commentInfo.userID}`} onClick={navigateToProfile} id={commentInfo.userID}>{commentInfo.displayName}</Link>
                 <p>{commentInfo.data}</p>
 

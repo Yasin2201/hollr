@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react"
 import Comment from "./Comment";
+import SubmitComment from "./SubmitComment";
+import '../Styles/Post.css'
 
 const RenderComments = ({ postInfo, currentUser, allComments, navigateToProfile, showReplies, changeReplyState }) => {
     const [postsComments, setPostsComments] = useState('')
@@ -11,21 +13,23 @@ const RenderComments = ({ postInfo, currentUser, allComments, navigateToProfile,
     }, [postInfo, allComments])
 
     return (
-        <div>
+        <div className='showReplies'>
             {loadingComments
                 ? <p>Loading...</p>
-                : postsComments.length > 0
-                    ? showReplies
-                        ? <div>
-                            <button onClick={changeReplyState}>hide replies</button>
-                            {postsComments.map((comment) => {
-                                return (
-                                    <Comment currentUser={currentUser} navigateToProfile={navigateToProfile} commentInfo={comment} key={comment.id} />
-                                )
-                            })}
-                        </div>
-                        : <button onClick={changeReplyState}>show replies {postsComments.length}</button>
-                    : <div></div>
+                : <div className='repliesBtn'>{showReplies
+                    ? <button onClick={changeReplyState}>hide replies</button>
+                    : <button onClick={changeReplyState}> {`show replies ${postsComments.length > 0 && postsComments.length}`}</button>}</div>
+            }
+            {showReplies
+                &&
+                <div>
+                    <SubmitComment postInfo={postInfo} currUser={currentUser} changeReplyState={changeReplyState} showReplies={showReplies} />
+                    {postsComments.map((comment) => {
+                        return (
+                            <Comment currentUser={currentUser} navigateToProfile={navigateToProfile} commentInfo={comment} key={comment.id} />
+                        )
+                    })}
+                </div>
             }
         </div>
     )
