@@ -8,31 +8,41 @@
     border-right: solid 1px rgba(255, 255, 255, 0.2);
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: left;
     overflow: hidden;
+}
+
+.sidebar-button-panel {
+    display: flex;
+    margin-left: 35%;
+    margin-right: auto;
+    margin-top: 25px;
+    width: auto;
+    padding: 5px;
+}
+
+.sidebar-button-panel:hover{
+    background-color: #095d8a;
+    border-radius: 30px;
 }
 
 .sideBarBtns {
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding: auto;
     font-size: 1.5em;
-    margin-top: 50px;
-    width: 200px;
     height: 50px;
     text-decoration: none;
 }
 
-.sideBarBtns:hover {
-    background-color: rgba(129, 107, 255, 0.281);
-    border-radius: 30px;
+img.sidebar-icon {
+    width: 30px;
+}
+
+img.sidebar-icon:hover {
+    filter: invert();
 }
 
 a.sideBarBtns:link, a.sideBarBtns:visited{
     color: rgb(202, 202, 202);
 }
 
-a.sideBarBtns:hover, a.sideBarBtns:active {
-    color: rgb(161, 161, 161);
-  }
