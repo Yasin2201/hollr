@@ -1,9 +1,7 @@
 import firebase from "firebase";
 import { useState } from "react";
 import { Link } from "react-router-dom"
-import SubmitComment from "../Comments/SubmitComment";
 import RenderComments from "../Comments/RenderComments";
-import '../Styles/Post.css'
 
 const RenderPost = ({ currUser, post, allComments, navigateToProfile }) => {
     const [showReplies, setShowReplies] = useState(false)

@@ -1,10 +1,14 @@
-html, body {
+html, body, #root {
     height: 100%;
     margin: 0;
 }
 
-#main {
+.main {
     height: inherit;
+    background-color: #003049;
+}
+
+.mainBody {
     background-color: #003049;
     display: grid;
     grid-template-rows: 100px 1fr;

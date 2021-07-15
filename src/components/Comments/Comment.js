@@ -1,7 +1,7 @@
 import firebase from "firebase";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import '../Styles/Post.css'
+
 const Comment = ({ commentInfo, currentUser, navigateToProfile }) => {
     const [edit, setEdit] = useState(false)
     const [editData, setEditData] = useState('')
@@ -29,25 +29,29 @@ const Comment = ({ commentInfo, currentUser, navigateToProfile }) => {
     return (
         <div className='comments'>
             <div key={commentInfo.id} >
-                <Link to={`/profile/${commentInfo.userID}`} onClick={navigateToProfile} id={commentInfo.userID}>{commentInfo.displayName}</Link>
-                <p>{commentInfo.data}</p>
-
                 {
-                    currentUser.uid === commentInfo.userID &&
-                    <div>
-                        <button onClick={onDelete}>Delete</button>
-                        {
-                            edit
-                                ? <div>
-                                    <button onClick={onEdit}>Cancel Edit</button>
-                                    <input type='text' onChange={addEditData} />
-                                    <button onClick={onEditSubmit}>Submit Edit</button>
-                                </div>
-                                : <button onClick={onEdit}>Edit</button>
-                        }
+                    currentUser.uid === commentInfo.userID
+                        ? <div className='comment-top'>
+                            <Link to={`/profile/${commentInfo.userID}`} onClick={navigateToProfile} id={commentInfo.userID} className='username'>{commentInfo.displayName}</Link>
+                            <div className='post-top-right'>
+                                {
+                                    edit
+                                        ? <div>
+                                            <button onClick={onEdit}>Cancel Edit</button>
+                                            <input type='text' onChange={addEditData} />
+                                            <button onClick={onEditSubmit}>Submit Edit</button>
+                                        </div>
+                                        : <button className='post-action-buttons' onClick={onEdit}>e</button>
+                                }
+                                <button className='post-action-buttons' onClick={onDelete}>d</button>
+                            </div>
+                        </div>
+                        : <div>
+                            <Link to={`/profile/${commentInfo.userID}`} onClick={navigateToProfile} id={commentInfo.userID} className='username'>{commentInfo.displayName}</Link>
 
-                    </div>
+                        </div>
                 }
+                <p className="postData">{commentInfo.data}</p>
             </div>
         </div>
     )

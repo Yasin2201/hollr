@@ -87,9 +87,9 @@ const App = () => {
 
     return (
         <BrowserRouter>
-            <div>
+            <div className="main">
                 {user
-                    ? <div id="main">
+                    ? <div className="mainBody">
                         <Navbar user={user} signOut={signOut} />
                         <Sidebar navigateToProfile={navigateToProfile} navigateProfile={navigateProfile} user={user} />
                         <Switch>

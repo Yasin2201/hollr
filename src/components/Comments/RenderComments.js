@@ -18,7 +18,7 @@ const RenderComments = ({ postInfo, currentUser, allComments, navigateToProfile,
                 ? <p>Loading...</p>
                 : <div className='repliesBtn'>{showReplies
                     ? <button onClick={changeReplyState}>hide replies</button>
-                    : <button onClick={changeReplyState}> {`show replies ${postsComments.length > 0 && postsComments.length}`}</button>}</div>
+                    : <button onClick={changeReplyState}> comments {postsComments.length > 0 && postsComments.length}</button>}</div>
             }
             {showReplies
                 &&
