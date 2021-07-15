@@ -27,8 +27,8 @@ const Followers = ({ navigateProfile, profile, currUser, setFollowButton, allUse
     }
 
     return (
-        <div>
-            <h3 onClick={usersModalClick}>Followers: {followers.length}</h3>
+        <div className='following-followers'>
+            <h3 onClick={usersModalClick}>{followers.length} Followers</h3>
             {modalState && <UsersModal usersModalClick={usersModalClick} userModalData={followers} allUsers={allUsers} navigateToProfile={navigateToProfile} />}
         </div>
     )

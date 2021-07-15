@@ -3,7 +3,7 @@ import firebase from "firebase"
 import RenderPost from "../Posts/RenderPost"
 import Followers from "./Followers"
 import Following from "./Following"
-
+import '../Styles/Profile.css'
 
 const Profile = ({ currUser, allUsers, navigateProfile, allPosts, allComments, navigateToProfile }) => {
     const [loading, setLoading] = useState(false)
@@ -39,15 +39,18 @@ const Profile = ({ currUser, allUsers, navigateProfile, allPosts, allComments, n
     }
 
     return (
-        <div>
+        <div className="profile">
             {loading
                 ? <div>
-                    <h2>{profile.displayName}</h2>
+                    <h1 className='profile-username'>{profile.displayName}</h1>
                     {currUser.uid === profile.uid
-                        ? <div></div>
+                        ? null
                         : followState ? <button onClick={followAction}>Unfollow</button> : <button onClick={followAction}>Follow</button>}
-                    <Followers navigateProfile={navigateProfile} profile={profile} currUser={currUser} setFollowButton={setFollowButton} allUsers={allUsers} navigateToProfile={navigateToProfile} />
-                    <Following navigateProfile={navigateProfile} profile={profile} currUser={currUser} allUsers={allUsers} navigateToProfile={navigateToProfile} />
+
+                    <div className='followers-panel'>
+                        <Followers navigateProfile={navigateProfile} profile={profile} currUser={currUser} setFollowButton={setFollowButton} allUsers={allUsers} navigateToProfile={navigateToProfile} />
+                        <Following navigateProfile={navigateProfile} profile={profile} currUser={currUser} allUsers={allUsers} navigateToProfile={navigateToProfile} />
+                    </div>
 
                     {profilesPosts.map((post) => {
                         return (
