@@ -7,9 +7,9 @@
     display: grid;
     background-color: #003049;
     border-bottom: solid 1px rgba(255, 255, 255, 0.2);
-    grid-template-columns: auto 1fr;
+    grid-template-columns: auto auto 1fr;
     grid-template-areas: 
-    "title actions";
+    "title logo actions";
 }
 
 #navActions {
@@ -31,6 +31,14 @@ a.title:link, a.title:visited {
 a.title:hover, a.title:active {
     color: rgb(161, 161, 161);
   }
+
+img.logo {
+    filter:grayscale(70%);
+    grid-area: logo;
+    width: 60px;
+    align-self: center;
+    margin-left: 10px;
+}
   
 .signOut {
     align-self: center;
