@@ -19,7 +19,6 @@ html, body, #root {
 }
 
 #allPosts {
-    background-color: #003755;
     grid-area: allPosts;
     display: flex;
     flex-direction: column;

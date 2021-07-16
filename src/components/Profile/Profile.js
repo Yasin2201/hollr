@@ -42,9 +42,9 @@ const Profile = ({ currUser, allUsers, navigateProfile, allPosts, allComments, n
     return (
         <div className="profile">
             {loading
-                ? <div>
+                ? <div className='profile-main'>
                     <div className='profile-top'>
-                        <img src={userIcon} alt='profile picture' className='profile-pic' />
+                        <img src={userIcon} alt='profile' className='profile-pic' />
                         <h1 className='profile-username'>{profile.displayName}</h1>
                         {
                             currUser.uid === profile.uid
@@ -62,6 +62,7 @@ const Profile = ({ currUser, allUsers, navigateProfile, allPosts, allComments, n
                             <RenderPost currUser={currUser} post={post} userInfo={profile} allComments={allComments} navigateToProfile={navigateToProfile} key={post.id} />
                         )
                     })}
+                    {profilesPosts.length < 1 && <h2>You have no posts :(</h2>}
                 </div>
                 : <h2>loading...</h2>
             }
