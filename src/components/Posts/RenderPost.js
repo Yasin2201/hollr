@@ -14,6 +14,13 @@ const RenderPost = ({ currUser, post, allComments, navigateToProfile }) => {
     const onDelete = () => {
         const db = firebase.firestore()
         db.collection('Posts').doc(post.id).delete()
+
+        const commentQuery = db.collection('Comments').where('originalPostID', '==', post.id)
+        commentQuery.get().then(function (querySnapshot) {
+            querySnapshot.forEach(function (doc) {
+                doc.ref.delete();
+            });
+        })
     }
 
     const onEdit = () => {
