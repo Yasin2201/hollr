@@ -30,22 +30,26 @@ const App = () => {
     useEffect(() => {
         const db = firebase.firestore()
 
-        const unsubscribe = db.collection("Posts").onSnapshot((querySnapshot) => {
-            const postData = []
-            querySnapshot.forEach((doc) => postData.push({ ...doc.data(), id: doc.id }))
-            setAllPosts(postData)
-        });
+        const unsubscribe = db.collection("Posts")
+            .orderBy("datePosted", "desc")
+            .onSnapshot((querySnapshot) => {
+                const postData = []
+                querySnapshot.forEach((doc) => postData.push({ ...doc.data(), id: doc.id }))
+                setAllPosts(postData)
+            });
         return unsubscribe
     }, [])
 
     useEffect(() => {
         const db = firebase.firestore()
 
-        const unsubscribe = db.collection("Comments").onSnapshot((querySnapshot) => {
-            const commentData = []
-            querySnapshot.forEach((doc) => commentData.push({ ...doc.data(), id: doc.id }))
-            setAllComments(commentData)
-        });
+        const unsubscribe = db.collection("Comments")
+            .orderBy("datePosted", "desc")
+            .onSnapshot((querySnapshot) => {
+                const commentData = []
+                querySnapshot.forEach((doc) => commentData.push({ ...doc.data(), id: doc.id }))
+                setAllComments(commentData)
+            });
         return unsubscribe
     }, [])
 
