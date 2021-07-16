@@ -8,22 +8,22 @@ const Sidebar = ({ navigateToProfile, user }) => {
     return (
         <div id='sidebar'>
             <div className='sidebar-button-panel'>
-                <img src={homeIcon} alt="home" className='sidebar-icon' />
                 <Link to={`/`} className='sideBarBtns'>
+                    <img src={homeIcon} alt="home" className='sidebar-icon' />
                     Home
                 </Link>
             </div>
 
             <div className='sidebar-button-panel'>
-                <img src={githubIcon} alt="github" className='sidebar-icon' />
                 <Link to={`/`} className='sideBarBtns'>
+                    <img src={githubIcon} alt="github" className='sidebar-icon' />
                     Github
                 </Link>
             </div>
 
             <div className='sidebar-button-panel'>
-                <img src={userIcon} alt="profile" className='sidebar-icon' />
                 <Link to={`/profile/${user.uid}`} className='sideBarBtns' id={user.uid} onClick={navigateToProfile}>
+                    <img src={userIcon} alt="profile" className='sidebar-icon' id={user.uid} />
                     Your Profile
                 </Link>
             </div>
