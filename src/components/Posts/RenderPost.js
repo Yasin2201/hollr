@@ -4,6 +4,7 @@ import { Link } from "react-router-dom"
 import RenderComments from "../Comments/RenderComments";
 import deleteIcon from '../Assets/delete.svg'
 import editIcon from '../Assets/edit.svg'
+import cancelIcon from '../Assets/close.svg'
 
 const RenderPost = ({ currUser, post, allComments, navigateToProfile }) => {
     const [showReplies, setShowReplies] = useState(false)
@@ -43,10 +44,13 @@ const RenderPost = ({ currUser, post, allComments, navigateToProfile }) => {
                     <div className='post-top-right'>
                         {
                             edit
-                                ? <div>
-                                    <button onClick={onEdit}>Cancel Edit</button>
-                                    <input type='text' onChange={addEditData} />
-                                    <button onClick={onEditSubmit}>Submit Edit</button>
+                                ? <div className='editPostModal'>
+                                    <div className='modal-box'>
+                                        <h3 className='edit-modal-username'>{currUser.displayName}</h3>
+                                        <img src={cancelIcon} alt='cancel edit' className='cancelEditBtn' onClick={onEdit} />
+                                        <textarea className='modal-text' type='text' maxLength='250' onChange={addEditData} defaultValue={post.data} />
+                                        {editData.length > 0 ? <button className='submitEditBtn' onClick={onEditSubmit}>Submit</button> : <button className='submitEditBtnDisabled'>Submit</button>}
+                                    </div>
                                 </div>
                                 : <img src={editIcon} alt='edit' className='post-action-buttons' onClick={onEdit} />
                         }
