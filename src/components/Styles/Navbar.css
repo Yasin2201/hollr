@@ -20,7 +20,7 @@
 
 .title {
     align-self: center;
-    margin-left: 30px;
+    margin-left: 20px;
 }
 
 a.title:link, a.title:visited {
@@ -33,11 +33,15 @@ a.title:hover, a.title:active {
   }
 
 img.logo {
-    filter:grayscale(70%);
+    filter:grayscale(10%);
     grid-area: logo;
     width: 60px;
     align-self: center;
-    margin-left: 10px;
+    margin: 0;
+}
+
+img.logo:hover, img.logo:active {
+    filter:grayscale(90%);
 }
   
 .signOut {
