@@ -29,7 +29,7 @@ const Following = ({ navigateProfile, profile, currUser, allUsers, navigateToPro
     return (
         <div className='following-followers'>
             <h3 className='following-follower-title' onClick={usersModalClick}>{following.length} Following</h3>
-            {modalState && <UsersModal usersModalClick={usersModalClick} userModalData={following} allUsers={allUsers} navigateToProfile={navigateToProfile} />}
+            {modalState && <UsersModal usersModalClick={usersModalClick} userModalData={following} allUsers={allUsers} navigateToProfile={navigateToProfile} type={'Following'} />}
         </div>
     )
 }
