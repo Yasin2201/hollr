@@ -10,6 +10,7 @@
     grid-template-columns: auto auto 1fr;
     grid-template-areas: 
     "title logo actions";
+    z-index: 1;
 }
 
 #navActions {

@@ -6,6 +6,7 @@ import SubmitPost from './components/Posts/SubmitPost'
 import RenderPost from "./components/Posts/RenderPost";
 import Profile from "./components/Profile/Profile";
 import Sidebar from "./components/Sidebar/Sidebar";
+import WhoToFollow from "./components/Sidebar/WhoToFollow";
 import Navbar from "./components/Navbar";
 import './components/Styles/App.css'
 
@@ -63,17 +64,6 @@ const App = () => {
         const db = firebase.firestore()
 
         if (user !== null) {
-            const unsubscribe = db.collection("Users").doc(user.uid)
-                .collection("Followers").doc(user.uid)
-            return unsubscribe
-        }
-
-    }, [user])
-
-    useEffect(() => {
-        const db = firebase.firestore()
-
-        if (user !== null) {
             const unsubscribe = db.collection('Users').doc(user.uid).set({
                 displayName: user.displayName
             })
@@ -92,6 +82,7 @@ const App = () => {
                     ? <div className="mainBody">
                         <Navbar user={user} signOut={signOut} />
                         <Sidebar navigateToProfile={navigateToProfile} navigateProfile={navigateProfile} user={user} />
+                        <WhoToFollow allUsers={allUsers} currUser={user} />
                         <Switch>
                             <Route exact path='/'>
                                 <div id='allPosts'>
