@@ -67,19 +67,21 @@ img:hover, img:active {
     height: 50%;
     align-self: flex-end;
     margin: 5px;
-    border: none;
     border-radius: 30px;
     background-color: rgb(90, 71, 202);
+    border: solid 3px rgb(90, 71, 202);
     color: rgb(202, 202, 202);
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .postCommentBtn:hover, .postCommentBtn:active {
-    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.507);
+    background-color: rgba(91, 71, 202, 0.664);
+    transition: 0.2s;
 }
 
 .postCommentBtn:disabled{
     background-color: rgba(96, 77, 204, 0.507);
+    border: none;
     color: rgba(255, 255, 255, 0.199);
     box-shadow: none;
 }

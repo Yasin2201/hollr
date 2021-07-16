@@ -49,21 +49,19 @@ img.logo:hover, img.logo:active {
     align-self: center;
     width: 100px;
     height: 35px;
-    border: none;
     border-radius: 15px;
     margin-right: 30px;
     font-family: Arial, Helvetica, sans-serif;
-    color: #003049;
+    color: whitesmoke;
     background-color: #d62828;
+    border: solid 2px #d62828;
 }
 
-.signOut:hover {
-    background-color: #b92222;
-    box-shadow: 1px 1px 10px black;
-}
-
-.signOut:active {
-    background-color: #d62828;
+.signOut:hover, .signOut:active {
+    color: #d62828;
+    background-color: whitesmoke;
+    border: solid 2px #d62828;
+    transition: 0.2s;
 }
 
 .greeting {
