@@ -43,8 +43,12 @@
     font-size: 0.9em;
 }
 
+.following-follower-title {
+    cursor: pointer;
+}
+
 .users-modal {
-    background-color: rgba(255, 255, 255, 0.767);
+    background-color: rgba(255, 254, 254, 0.24);
     position: fixed;
     width: 100vw;
     height: 100vh;
@@ -54,6 +58,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    z-index: 1;
 }
 
 .allUsers {
@@ -73,20 +78,4 @@
     text-align: center;
     margin: 5px;
     width: 100%;
-}
-
-.close-modal-btn{
-    width: 90px;
-    height: 26px;
-    background-color: #af2a2a;
-    border: none;
-    outline: none;
-    color: rgb(230, 230, 230);
-    font-family:sans-serif;
-    border-radius: 5px;
-    box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.479);
-}
-
-.close-modal-btn:hover, .close-modal-btn:active {
-    background-color: #c92f2f;
 }

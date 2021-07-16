@@ -146,7 +146,6 @@ a.username:hover, a.username:active {
 textarea.modal-text{
     grid-area: text;
     width: initial;
-    /* background: black; */
     background-color: #003c5c;
     height: 60px;
 }

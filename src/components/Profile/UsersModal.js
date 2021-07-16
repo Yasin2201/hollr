@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import cancelIcon from '../Assets/close.svg'
 
 const UsersModal = ({ usersModalClick, userModalData, allUsers, navigateToProfile }) => {
 
@@ -22,7 +23,7 @@ const UsersModal = ({ usersModalClick, userModalData, allUsers, navigateToProfil
 
     return (
         <div className='users-modal'>
-            <button className="close-modal-btn" onClick={usersModalClick}>Close</button>
+            <img src={cancelIcon} alt='cancel edit' className='cancelEditBtn' onClick={usersModalClick} />
             <div className='allUsers'>
                 {userModalList.map((user) => {
                     return (
