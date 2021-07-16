@@ -1,7 +1,9 @@
 import firebase from "firebase"
 import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
+import '../Styles/WhoToFollow.css'
 
-const WhoToFollow = ({ allUsers, currUser }) => {
+const WhoToFollow = ({ allUsers, currUser, navigateToProfile }) => {
     const [following, setFollowing] = useState([])
     const usersNotFollowing = allUsers.filter(val => !following.includes(val.uid)).filter((user) => user.uid !== currUser.uid);
 
@@ -22,15 +24,17 @@ const WhoToFollow = ({ allUsers, currUser }) => {
     }, [currUser])
 
     return (
-        <div className='whoToFollow-sidebar'>
+        <div id='whoToFollow-sidebar'>
             <div className='not-following-container'>
+                <h2 className='whoToFollow-title'>Who To Follow</h2>
                 {usersNotFollowing.map((user) => {
                     return (
-                        <div key={user.uid}>
-                            {user.displayName}
+                        <div key={user.uid} className="users-follow">
+                            <Link to={`/profile/${user.uid}`} onClick={navigateToProfile} id={user.uid} className='username'>{user.displayName}</Link>
                         </div>
                     )
                 })}
+                {usersNotFollowing.length < 1 && <h3>Nothing to see here...</h3>}
             </div>
         </div>
     )

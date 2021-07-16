@@ -82,7 +82,7 @@ const App = () => {
                     ? <div className="mainBody">
                         <Navbar user={user} signOut={signOut} />
                         <Sidebar navigateToProfile={navigateToProfile} navigateProfile={navigateProfile} user={user} />
-                        <WhoToFollow allUsers={allUsers} currUser={user} />
+                        <WhoToFollow allUsers={allUsers} currUser={user} navigateToProfile={navigateToProfile} />
                         <Switch>
                             <Route exact path='/'>
                                 <div id='allPosts'>
