@@ -24,3 +24,47 @@ html, body, #root {
     flex-direction: column;
     align-items: center;
 }
+
+.signIn-Container {
+    color: #003049;
+    background-color: #e5e5f7;
+    opacity: 0.8;
+    background: linear-gradient(135deg, #444cf755 25%, transparent 25%) -10px 0/ 20px 20px, linear-gradient(225deg, #444cf7 25%, transparent 25%) -10px 0/ 20px 20px, linear-gradient(315deg, #444cf755 25%, transparent 25%) 0px 0/ 20px 20px, linear-gradient(45deg, #444cf7 25%, #e5e5f7 25%) 0px 0/ 20px 20px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: center;
+}
+
+.signIn-buttons-container {
+    margin-top: 10%;
+    background-color: whitesmoke;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 15%;
+    border-radius: 20px;
+}
+
+.signIn-buttons {
+    align-self: center;
+    font-size: 1em;
+    height: 50px;
+    width: 80%;
+    margin: 10px;
+    border-radius: 20px;
+    border: solid 3px rgb(90, 71, 202);
+    background-color: rgb(90, 71, 202);
+    color: whitesmoke;
+}
+
+.signIn-buttons:hover, .signIn-buttons:active{
+    border: solid 3px rgb(90, 71, 202);
+    background-color: rgb(221, 221, 221);
+    color: black;
+    transition: 0.1s;
+}
+

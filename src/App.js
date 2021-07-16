@@ -103,8 +103,13 @@ const App = () => {
                             </Route>
                         </Switch>
                     </div>
-                    : <div>
-                        <button onClick={signIn}>Sign In</button>
+                    : <div className='signIn-Container'>
+                        <div className='signIn-buttons-container'>
+                            <h1>Welcome to holl'r</h1>
+                            <button className='signIn-buttons' onClick={signIn}>Sign In with Google</button>
+                            <span>OR</span>
+                            <button className='signIn-buttons'>Test Drive Existing Account</button>
+                        </div>
                     </div>}
             </div>
         </BrowserRouter>
