@@ -4,6 +4,7 @@ import RenderPost from "../Posts/RenderPost"
 import Followers from "./Followers"
 import Following from "./Following"
 import '../Styles/Profile.css'
+import userIcon from '../Assets/user.svg'
 
 const Profile = ({ currUser, allUsers, navigateProfile, allPosts, allComments, navigateToProfile }) => {
     const [loading, setLoading] = useState(false)
@@ -43,6 +44,7 @@ const Profile = ({ currUser, allUsers, navigateProfile, allPosts, allComments, n
             {loading
                 ? <div>
                     <div className='profile-top'>
+                        <img src={userIcon} alt='profile picture' className='profile-pic' />
                         <h1 className='profile-username'>{profile.displayName}</h1>
                         {
                             currUser.uid === profile.uid

@@ -1,17 +1,26 @@
 .profile {
+    background-color: #003755;
     grid-area: allPosts;
     display: flex;
     justify-content: center;
+    height: 100vh;
 }
 
 .profile-top {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     margin-top: 20px;
     align-items: center;
 }
 
+img.profile-pic, img.profile-pic:hover {
+    filter: invert();
+    width: 150px;
+}
+
 .followBtn {
+    margin-top: 10px;
     height: 30px;
     width: 80px;
     border: none;
@@ -48,7 +57,7 @@
 }
 
 .users-modal {
-    background-color: rgba(255, 254, 254, 0.24);
+    background-color: rgba(114, 114, 114, 0.24);
     position: fixed;
     width: 100vw;
     height: 100vh;
