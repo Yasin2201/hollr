@@ -14,9 +14,11 @@ const App = () => {
     const auth = firebase.auth()
     const [user] = useAuthState(auth)
     const [allPosts, setAllPosts] = useState([])
+    const [customTimeline, setCustomTimeline] = useState([])
     const [allComments, setAllComments] = useState([])
     const [allUsers, setAllUsers] = useState([])
     const [navigateProfile, setNavigateProfile] = useState(undefined)
+    const [following, setFollowing] = useState([])
 
     const signIn = () => {
         const provider = new firebase.auth.GoogleAuthProvider();
@@ -27,18 +29,46 @@ const App = () => {
         auth.signOut()
     }
 
+
     useEffect(() => {
         const db = firebase.firestore()
 
-        const unsubscribe = db.collection("Posts")
-            .orderBy("datePosted", "desc")
-            .onSnapshot((querySnapshot) => {
-                const postData = []
-                querySnapshot.forEach((doc) => postData.push({ ...doc.data(), id: doc.id }))
-                setAllPosts(postData)
-            });
-        return unsubscribe
-    }, [])
+        if (user !== null) {
+            const unsubscribe = db.collection("Users").doc(user.uid)
+                .collection('Following').onSnapshot((querySnapshot) => {
+                    const isFollowingArr = []
+                    querySnapshot.forEach(doc => {
+                        isFollowingArr.push(doc.id)
+                    });
+                    setFollowing(isFollowingArr)
+                });
+            return unsubscribe
+        }
+
+    }, [user])
+
+    useEffect(() => {
+        const db = firebase.firestore()
+
+        if (user !== null) {
+            const unsubscribeCustomTimeline = db.collection("Posts")
+                .orderBy("datePosted", "desc")
+                .onSnapshot((querySnapshot) => {
+                    const customTimelineData = []
+                    querySnapshot.forEach((doc) => following.includes(doc.data().userID) || doc.data().userID === user.uid ? customTimelineData.push({ ...doc.data(), id: doc.id }) : null)
+                    setCustomTimeline(customTimelineData)
+                });
+
+            const unsubscribeAllPosts = db.collection("Posts")
+                .orderBy("datePosted", "desc")
+                .onSnapshot((querySnapshot) => {
+                    const postData = []
+                    querySnapshot.forEach((doc) => postData.push({ ...doc.data(), id: doc.id }))
+                    setAllPosts(postData)
+                });
+            return { unsubscribeCustomTimeline, unsubscribeAllPosts }
+        }
+    }, [following, user])
 
     useEffect(() => {
         const db = firebase.firestore()
@@ -91,7 +121,7 @@ const App = () => {
                             <Route exact path='/'>
                                 <div id='allPosts'>
                                     <SubmitPost userUID={user.uid} username={user.displayName} />
-                                    {allPosts.map((post) => {
+                                    {customTimeline.map((post) => {
                                         return (
                                             <RenderPost post={post} currUser={user} userInfo={user} key={post.id} allComments={allComments} navigateToProfile={navigateToProfile} />
                                         )
