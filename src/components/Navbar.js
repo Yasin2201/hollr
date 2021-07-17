@@ -5,7 +5,7 @@ const Navbar = ({ user, signOut }) => {
     return (
         <div id='navbar'>
             <Link to='/' className='title'>
-                <h1>holl'r</h1>
+                <h1 className="logoHeader">holl'r</h1>
             </Link>
             <Link to='/' className='title'>
                 <img src={logo} alt='hollr logo' className='logo' />

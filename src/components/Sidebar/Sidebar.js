@@ -10,21 +10,21 @@ const Sidebar = ({ navigateToProfile, user }) => {
             <div className='sidebar-button-panel'>
                 <Link to={`/`} className='sideBarBtns'>
                     <img src={homeIcon} alt="home" className='sidebar-icon' />
-                    Home
+                    <p className='sidebar-btn-text'>Home</p>
                 </Link>
             </div>
 
             <div className='sidebar-button-panel'>
                 <Link to={`/`} className='sideBarBtns'>
                     <img src={githubIcon} alt="github" className='sidebar-icon' />
-                    Github
+                    <p className='sidebar-btn-text'>Github</p>
                 </Link>
             </div>
 
             <div className='sidebar-button-panel'>
                 <Link to={`/profile/${user.uid}`} className='sideBarBtns' id={user.uid} onClick={navigateToProfile}>
                     <img src={userIcon} alt="profile" className='sidebar-icon' id={user.uid} />
-                    Your Profile
+                    <p className='sidebar-btn-text'>Your Profile</p>
                 </Link>
             </div>
 

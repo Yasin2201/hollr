@@ -45,7 +45,7 @@ html, body, #root {
     padding: 20px;
     display: flex;
     flex-direction: column;
-    width: 15%;
+    width: 20%;
     border-radius: 20px;
 }
 
@@ -68,3 +68,86 @@ html, body, #root {
     transition: 0.1s;
 }
 
+@media only screen and (max-width: 1400px) {
+    .signIn-buttons-container {
+        margin-top: 10%;
+        width: 30%;
+    }
+}
+
+@media only screen and (max-width: 860px) {
+    .mainBody {
+        grid-template-columns: 0.2fr 1fr;
+        grid-template-areas: 
+        "nav nav nav"
+        "sidebar allPosts";
+    }
+
+    /* #allPosts {
+        align-items: flex-end;
+        padding-right: 20px;
+    } */
+
+    .signIn-buttons-container {
+        margin-top: 20%;
+        width: 40%;
+    }
+
+    #whoToFollow-sidebar{
+        display: none;
+    }
+
+    .post {
+        width: 60vw;
+    }
+
+    textarea {
+        width: 60vw;
+    }
+
+    .allUsers {
+        width: 20%;
+    }
+
+    .modal-box {
+        width: 50%;
+    }
+
+    .sidebar-btn-text {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .signIn-buttons-container {
+        margin-top: 30%;
+        width: 50%;
+    }
+
+    h1.logoHeader {
+        display: none;
+    }
+
+    .modal-box {
+        width: 70%;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .signIn-buttons-container {
+        margin-top: 40%;
+        width: 60%;
+    }
+
+    .greeting {
+        display: none;
+    }
+
+    .allUsers {
+        width: 30%;
+    }
+
+    .profile {
+        justify-content: flex-end;
+    }
+}
