@@ -24,7 +24,7 @@ const Sidebar = ({ navigateToProfile, user }) => {
             <div className='sidebar-button-panel'>
                 <Link to={`/profile/${user.uid}`} className='sideBarBtns' id={user.uid} onClick={navigateToProfile}>
                     <img src={userIcon} alt="profile" className='sidebar-icon' id={user.uid} />
-                    <p className='sidebar-btn-text'>Your Profile</p>
+                    <p className='sidebar-btn-text' id={user.uid}>Your Profile</p>
                 </Link>
             </div>
 

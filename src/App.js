@@ -25,8 +25,13 @@ const App = () => {
         auth.signInWithPopup(provider);
     }
 
+    const signInAnonymously = () => {
+        firebase.auth().signInAnonymously();
+    }
+
     const signOut = () => {
         auth.signOut()
+        setName('')
     }
 
 
@@ -93,20 +98,32 @@ const App = () => {
         });
         return unsubscribe
     }, [])
+    const [name, setName] = useState('')
 
     useEffect(() => {
         const db = firebase.firestore()
 
-        if (user !== null) {
+        if (user !== null && !user.isAnonymous) {
             const unsubscribe = db.collection('Users').doc(user.uid).set({
                 displayName: user.displayName
             })
             return unsubscribe
+        } else if (user !== null && user.isAnonymous) {
+            const unsubscribe = db.collection("Users").doc(user.uid).set({
+                displayName: name
+            })
+            return unsubscribe
         }
-    }, [user])
+    }, [user, name])
 
     const navigateToProfile = (e) => {
         setNavigateProfile(allUsers.find((user) => user.uid === e.target.id).uid)
+    }
+
+
+    const changeName = (e) => {
+        setName(e.target.value)
+        console.log(name)
     }
 
     return (
@@ -138,7 +155,9 @@ const App = () => {
                             <h1>Welcome to holl'r</h1>
                             <button className='signIn-buttons' onClick={signIn}>Sign In with Google</button>
                             <span>OR</span>
-                            <button className='signIn-buttons'>Test Drive Existing Account</button>
+                            {/* <button className='signIn-buttons' onClick={signInAnonymously}>Test Drive Existing Account</button> */}
+                            <input onChange={changeName} />
+                            <button className='signIn-buttons' onClick={signInAnonymously}>Submit Name</button>
                         </div>
                     </div>}
             </div>
