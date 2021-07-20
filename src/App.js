@@ -31,9 +31,16 @@ const App = () => {
 
     const signOut = () => {
         auth.signOut()
-        setName('')
     }
 
+    useEffect(() => {
+        if (user !== null) {
+            const db = firebase.firestore()
+            const ref = db.collection('Users').doc(user.uid)
+            ref.get().then((doc) => {
+            })
+        }
+    }, [user])
 
     useEffect(() => {
         const db = firebase.firestore()
@@ -98,7 +105,6 @@ const App = () => {
         });
         return unsubscribe
     }, [])
-    const [name, setName] = useState('')
 
     useEffect(() => {
         const db = firebase.firestore()
@@ -110,20 +116,14 @@ const App = () => {
             return unsubscribe
         } else if (user !== null && user.isAnonymous) {
             const unsubscribe = db.collection("Users").doc(user.uid).set({
-                displayName: name
+                displayName: 'anon'
             })
             return unsubscribe
         }
-    }, [user, name])
+    }, [user])
 
     const navigateToProfile = (e) => {
         setNavigateProfile(allUsers.find((user) => user.uid === e.target.id).uid)
-    }
-
-
-    const changeName = (e) => {
-        setName(e.target.value)
-        console.log(name)
     }
 
     return (
@@ -131,7 +131,7 @@ const App = () => {
             <div className="main">
                 {user
                     ? <div className="mainBody">
-                        <Navbar user={user} signOut={signOut} />
+                        <Navbar currUser={user} signOut={signOut} />
                         <Sidebar navigateToProfile={navigateToProfile} navigateProfile={navigateProfile} user={user} />
                         <WhoToFollow allUsers={allUsers} currUser={user} navigateToProfile={navigateToProfile} />
                         <Switch>
@@ -140,7 +140,7 @@ const App = () => {
                                     <SubmitPost userUID={user.uid} username={user.displayName} />
                                     {customTimeline.map((post) => {
                                         return (
-                                            <RenderPost post={post} currUser={user} userInfo={user} key={post.id} allComments={allComments} navigateToProfile={navigateToProfile} />
+                                            <RenderPost post={post} currUser={user} key={post.id} allComments={allComments} navigateToProfile={navigateToProfile} />
                                         )
                                     })}
                                 </div>
@@ -155,9 +155,7 @@ const App = () => {
                             <h1>Welcome to holl'r</h1>
                             <button className='signIn-buttons' onClick={signIn}>Sign In with Google</button>
                             <span>OR</span>
-                            {/* <button className='signIn-buttons' onClick={signInAnonymously}>Test Drive Existing Account</button> */}
-                            <input onChange={changeName} />
-                            <button className='signIn-buttons' onClick={signInAnonymously}>Submit Name</button>
+                            <button className='signIn-buttons' onClick={signInAnonymously}>Test Drive Existing Account</button>
                         </div>
                     </div>}
             </div>

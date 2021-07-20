@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom"
 import './Styles/Navbar.css'
 import logo from './Assets/logo.svg'
-const Navbar = ({ user, signOut }) => {
+
+const Navbar = ({ username, signOut }) => {
     return (
         <div id='navbar'>
             <Link to='/' className='title'>
@@ -11,7 +12,7 @@ const Navbar = ({ user, signOut }) => {
                 <img src={logo} alt='hollr logo' className='logo' />
             </Link>
             <div className='navActions'>
-                <h3 className='greeting'>Hello, {user.displayName}!</h3>
+                <h3 className='greeting'>Hello, {username}!</h3>
                 <Link to={`/`} className='navActions'>
                     <button className='signOut' onClick={signOut}>Sign Out</button>
                 </Link>
