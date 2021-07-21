@@ -1,4 +1,4 @@
-[holl'r](https://www.whateverhollrisat.com) is a social media app inspired by [twitter](https://www.twitter.com)
+[holl'r](https://yasin2201.github.io/hollr/) is a social media app inspired by [twitter](https://www.twitter.com)
 
 ### Main functionalities:
 - Users can write and share their own posts.
@@ -21,4 +21,4 @@
 #### Improvements:
 - Would like to add some sort 'retweet' & 'like' functionality.
 - upload pictures aswell as custom profile picture functionality in the future.
-- attempt to re-create something similiar using a relational DB. 
+- attempt to re-create something similiar using a relational database. 
