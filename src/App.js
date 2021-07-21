@@ -153,7 +153,7 @@ const App = () => {
                             <h1>Welcome to holl'r</h1>
                             <button className='signIn-buttons' onClick={signIn}>Sign In with Google</button>
                             <span>OR</span>
-                            <button className='signIn-buttons' onClick={signInAnonymously}>Test Drive Existing Account</button>
+                            <button className='signIn-buttons' onClick={signInAnonymously}>Sign In Anonymously</button>
                         </div>
                     </div>}
             </div>
