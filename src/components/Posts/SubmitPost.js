@@ -10,6 +10,7 @@ const SubmitPost = ({ user }) => {
         setPostData(e.target.value)
     }
 
+    //Updates the database with new post and post details
     const submitNewPost = (e) => {
         e.preventDefault()
 

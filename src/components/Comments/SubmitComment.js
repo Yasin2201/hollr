@@ -11,6 +11,7 @@ const SubmitComment = ({ postInfo, currUser, changeReplyState, showReplies }) =>
         setCommentData(e.target.value)
     }
 
+    //Uploads comment to database with relevant details
     const submitNewComment = (e) => {
         e.preventDefault()
 

@@ -14,11 +14,16 @@ const Profile = ({ currUser, allUsers, navigateProfile, allPosts, allComments, n
     const db = firebase.firestore()
 
     useEffect(() => {
+
+        //Gets the profile from allUsers 
         setProfile(allUsers.find((user) => user.uid === navigateProfile))
+        // Gets all the posts that match with the profile page currently navigated to
         setProfilesPosts(allPosts.filter((post) => post.userID === navigateProfile))
+
         setLoading(true)
     }, [allUsers, navigateProfile, allPosts, allComments])
 
+    //When a user follows/unfollows a profile database will update the current user and the profiles followers/following collection
     const followAction = () => {
         if (!followState) {
             db.collection("Users").doc(profile.uid).collection('Followers').doc(currUser.uid).set({

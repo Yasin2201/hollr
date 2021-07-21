@@ -5,9 +5,11 @@ import '../Styles/WhoToFollow.css'
 
 const WhoToFollow = ({ allUsers, currUser, navigateToProfile }) => {
     const [following, setFollowing] = useState([])
+
+    //Filter current users followers out of all available users, to create a list of recommended accounts to follow
     const usersNotFollowing = allUsers.filter(val => !following.includes(val.uid)).filter((user) => user.uid !== currUser.uid);
 
-
+    // Get current users complete following
     useEffect(() => {
         const db = firebase.firestore()
 

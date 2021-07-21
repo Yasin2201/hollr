@@ -6,6 +6,7 @@ const UsersModal = ({ usersModalClick, userModalData, allUsers, navigateToProfil
 
     const [userModalList, setUserModalList] = useState([])
 
+    //Renders a list of following/follwers user accounts to display in modal
     useEffect(() => {
         const userModalList = []
         allUsers.filter((user) => {

@@ -9,6 +9,7 @@ const RenderComments = ({ postInfo, currUser, allComments, navigateToProfile, sh
     const [loadingComments, setLoadingComments] = useState(true)
 
     useEffect(() => {
+        // Gets all comments relating to a specific post
         setPostsComments(allComments.filter((comments) => comments.originalPostID === postInfo.id))
         setLoadingComments(false)
     }, [postInfo, allComments])

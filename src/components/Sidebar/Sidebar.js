@@ -8,14 +8,14 @@ const Sidebar = ({ navigateToProfile, user }) => {
     return (
         <div id='sidebar'>
             <div className='sidebar-button-panel'>
-                <Link to={`/`} className='sideBarBtns'>
+                <Link to={`/hollr`} className='sideBarBtns'>
                     <img src={homeIcon} alt="home" className='sidebar-icon' />
                     <p className='sidebar-btn-text'>Home</p>
                 </Link>
             </div>
 
             <div className='sidebar-button-panel'>
-                <Link to={`/`} className='sideBarBtns'>
+                <Link to={"//github.com/Yasin2201/hollr"} target="_blank" className='sideBarBtns'>
                     <img src={githubIcon} alt="github" className='sidebar-icon' />
                     <p className='sidebar-btn-text'>Github</p>
                 </Link>

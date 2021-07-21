@@ -7,6 +7,7 @@ const Following = ({ navigateProfile, profile, currUser, allUsers, navigateToPro
     const [following, setFollowing] = useState([])
     const [modalState, setModalState] = useState(false)
 
+    //Get current users followings accounts
     useEffect(() => {
         const db = firebase.firestore()
 

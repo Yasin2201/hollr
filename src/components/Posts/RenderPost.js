@@ -11,6 +11,7 @@ const RenderPost = ({ currUser, post, allComments, navigateToProfile }) => {
     const [edit, setEdit] = useState(false)
     const [editData, setEditData] = useState('')
 
+    //Deletes post from database
     const onDelete = () => {
         const db = firebase.firestore()
         db.collection('Posts').doc(post.id).delete()
@@ -31,6 +32,7 @@ const RenderPost = ({ currUser, post, allComments, navigateToProfile }) => {
         setEditData(e.target.value)
     }
 
+    //Resubmits post with editied data to the database
     const onEditSubmit = () => {
         const db = firebase.firestore();
         db.collection("Posts").doc(post.id).update({ data: editData });
@@ -38,6 +40,7 @@ const RenderPost = ({ currUser, post, allComments, navigateToProfile }) => {
         setEdit(!edit)
     }
 
+    //toggles the ability to see comments relating to a post
     const changeReplyState = () => {
         setShowReplies(!showReplies)
     }

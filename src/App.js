@@ -33,15 +33,7 @@ const App = () => {
         auth.signOut()
     }
 
-    useEffect(() => {
-        if (user !== null) {
-            const db = firebase.firestore()
-            const ref = db.collection('Users').doc(user.uid)
-            ref.get().then((doc) => {
-            })
-        }
-    }, [user])
-
+    //Get current users following status from database
     useEffect(() => {
         const db = firebase.firestore()
 
@@ -59,6 +51,8 @@ const App = () => {
 
     }, [user])
 
+    // get all submitted posts from database and create a custom timeline for current user depending on 
+    // who they're following also get ALL posts from database
     useEffect(() => {
         const db = firebase.firestore()
 
@@ -82,6 +76,7 @@ const App = () => {
         }
     }, [following, user])
 
+    //Get all submitted comments from database
     useEffect(() => {
         const db = firebase.firestore()
 
@@ -95,6 +90,7 @@ const App = () => {
         return unsubscribe
     }, [])
 
+    //Get ALL users who have an account anonymous or not information
     useEffect(() => {
         const db = firebase.firestore()
 
@@ -106,6 +102,7 @@ const App = () => {
         return unsubscribe
     }, [])
 
+    // Set a displayName for the current user
     useEffect(() => {
         const db = firebase.firestore()
 
@@ -122,6 +119,7 @@ const App = () => {
         }
     }, [user])
 
+    // Get the UID of the profile user is navigating to 
     const navigateToProfile = (e) => {
         setNavigateProfile(allUsers.find((user) => user.uid === e.target.id).uid)
     }
@@ -135,7 +133,7 @@ const App = () => {
                         <Sidebar navigateToProfile={navigateToProfile} navigateProfile={navigateProfile} user={user} />
                         <WhoToFollow allUsers={allUsers} currUser={user} navigateToProfile={navigateToProfile} />
                         <Switch>
-                            <Route exact path='/'>
+                            <Route exact path='/hollr'>
                                 <div id='allPosts'>
                                     <SubmitPost user={user} />
                                     {customTimeline.map((post) => {
