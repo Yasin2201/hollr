@@ -4,7 +4,7 @@ import SubmitComment from "./SubmitComment";
 import '../Styles/Post.css'
 import commentIcon from '../Assets/speech-bubble.svg'
 
-const RenderComments = ({ postInfo, currentUser, allComments, navigateToProfile, showReplies, changeReplyState }) => {
+const RenderComments = ({ postInfo, currUser, allComments, navigateToProfile, showReplies, changeReplyState }) => {
     const [postsComments, setPostsComments] = useState('')
     const [loadingComments, setLoadingComments] = useState(true)
 
@@ -25,10 +25,10 @@ const RenderComments = ({ postInfo, currentUser, allComments, navigateToProfile,
             {showReplies
                 &&
                 <div>
-                    <SubmitComment postInfo={postInfo} currUser={currentUser} changeReplyState={changeReplyState} showReplies={showReplies} />
+                    <SubmitComment postInfo={postInfo} currUser={currUser} changeReplyState={changeReplyState} showReplies={showReplies} />
                     {postsComments.map((comment) => {
                         return (
-                            <Comment currentUser={currentUser} navigateToProfile={navigateToProfile} commentInfo={comment} key={comment.id} />
+                            <Comment currentUser={currUser} navigateToProfile={navigateToProfile} commentInfo={comment} key={comment.id} />
                         )
                     })}
                 </div>}

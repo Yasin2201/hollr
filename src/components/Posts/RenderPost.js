@@ -53,7 +53,7 @@ const RenderPost = ({ currUser, post, allComments, navigateToProfile }) => {
                             edit
                                 ? <div className='editPostModal'>
                                     <div className='modal-box'>
-                                        <h3 className='edit-modal-username'>{currUser.displayName}</h3>
+                                        <h3 className='edit-modal-username'>{currUser.isAnonymous ? "Anonymous" : currUser.displayName}</h3>
                                         <img src={cancelIcon} alt='cancel edit' className='cancelEditBtn' onClick={onEdit} />
                                         <textarea className='modal-text' type='text' maxLength='250' onChange={addEditData} defaultValue={post.data} />
                                         {editData.length > 0 ? <button className='submitEditBtn' onClick={onEditSubmit}>Submit</button> : <button className='submitEditBtnDisabled'>Submit</button>}
@@ -67,7 +67,7 @@ const RenderPost = ({ currUser, post, allComments, navigateToProfile }) => {
             </div>
             <p className='postData'>{post.data}</p>
             <div className='post-bottom'>
-                <RenderComments postInfo={post} currentUser={currUser} allComments={allComments} navigateToProfile={navigateToProfile} changeReplyState={changeReplyState} showReplies={showReplies} />
+                <RenderComments postInfo={post} currUser={currUser} allComments={allComments} navigateToProfile={navigateToProfile} changeReplyState={changeReplyState} showReplies={showReplies} />
             </div>
         </div>
     )

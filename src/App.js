@@ -116,7 +116,7 @@ const App = () => {
             return unsubscribe
         } else if (user !== null && user.isAnonymous) {
             const unsubscribe = db.collection("Users").doc(user.uid).set({
-                displayName: 'anon'
+                displayName: `Anon #${user.uid}`
             })
             return unsubscribe
         }
@@ -131,13 +131,13 @@ const App = () => {
             <div className="main">
                 {user
                     ? <div className="mainBody">
-                        <Navbar currUser={user} signOut={signOut} />
+                        <Navbar user={user} signOut={signOut} />
                         <Sidebar navigateToProfile={navigateToProfile} navigateProfile={navigateProfile} user={user} />
                         <WhoToFollow allUsers={allUsers} currUser={user} navigateToProfile={navigateToProfile} />
                         <Switch>
                             <Route exact path='/'>
                                 <div id='allPosts'>
-                                    <SubmitPost userUID={user.uid} username={user.displayName} />
+                                    <SubmitPost user={user} />
                                     {customTimeline.map((post) => {
                                         return (
                                             <RenderPost post={post} currUser={user} key={post.id} allComments={allComments} navigateToProfile={navigateToProfile} />

@@ -41,7 +41,7 @@ const Comment = ({ commentInfo, currentUser, navigateToProfile }) => {
                                     edit
                                         ? <div className='editPostModal'>
                                             <div className='modal-box'>
-                                                <h3 className='edit-modal-username'>{currentUser.displayName}</h3>
+                                                <h3 className='edit-modal-username'>{currentUser.isAnonymous ? "Anonymous" : currentUser.displayName}</h3>
                                                 <img src={cancelIcon} alt='cancel edit' className='cancelEditBtn' onClick={onEdit} />
                                                 <textarea className='modal-text' type='text' maxLength='220' onChange={addEditData} defaultValue={commentInfo.data} />
                                                 {editData.length > 0 ? <button className='submitEditBtn' onClick={onEditSubmit}>Submit</button> : <button className='submitEditBtnDisabled'>Submit</button>}

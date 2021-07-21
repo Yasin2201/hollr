@@ -2,7 +2,7 @@ import firebase from "firebase"
 import { useState } from "react"
 import '../Styles/SubmitPost.css'
 
-const SubmitPost = ({ userUID, username }) => {
+const SubmitPost = ({ user }) => {
     const [postData, setPostData] = useState('')
     const db = firebase.firestore()
 
@@ -13,12 +13,21 @@ const SubmitPost = ({ userUID, username }) => {
     const submitNewPost = (e) => {
         e.preventDefault()
 
-        db.collection('Posts').doc().set({
-            userID: userUID,
-            displayName: username,
-            data: postData,
-            datePosted: firebase.firestore.FieldValue.serverTimestamp()
-        })
+        if (user.isAnonymous) {
+            db.collection('Posts').doc().set({
+                userID: user.uid,
+                displayName: `Anon #${user.uid}`,
+                data: postData,
+                datePosted: firebase.firestore.FieldValue.serverTimestamp()
+            })
+        } else {
+            db.collection('Posts').doc().set({
+                userID: user.uid,
+                displayName: user.displayName,
+                data: postData,
+                datePosted: firebase.firestore.FieldValue.serverTimestamp()
+            })
+        }
 
         setPostData('')
         e.target.reset()

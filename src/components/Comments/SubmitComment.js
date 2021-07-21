@@ -14,13 +14,23 @@ const SubmitComment = ({ postInfo, currUser, changeReplyState, showReplies }) =>
     const submitNewComment = (e) => {
         e.preventDefault()
 
-        db.collection('Comments').doc().set({
-            originalPostID: postInfo.id,
-            userID: currUser.uid,
-            displayName: currUser.displayName,
-            data: commentData,
-            datePosted: firebase.firestore.FieldValue.serverTimestamp()
-        })
+        if (currUser.isAnonymous) {
+            db.collection('Comments').doc().set({
+                originalPostID: postInfo.id,
+                userID: currUser.uid,
+                displayName: `Anon #${currUser.uid}`,
+                data: commentData,
+                datePosted: firebase.firestore.FieldValue.serverTimestamp()
+            })
+        } else {
+            db.collection('Comments').doc().set({
+                originalPostID: postInfo.id,
+                userID: currUser.uid,
+                displayName: currUser.displayName,
+                data: commentData,
+                datePosted: firebase.firestore.FieldValue.serverTimestamp()
+            })
+        }
 
         setCommentData('')
         !showReplies && changeReplyState()
