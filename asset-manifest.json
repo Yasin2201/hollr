@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/hollr/static/css/main.a2f20751.chunk.css",
+    "main.js": "/hollr/static/js/main.d4d2b9c4.chunk.js",
+    "main.js.map": "/hollr/static/js/main.d4d2b9c4.chunk.js.map",
+    "runtime-main.js": "/hollr/static/js/runtime-main.7c0f8da8.js",
+    "runtime-main.js.map": "/hollr/static/js/runtime-main.7c0f8da8.js.map",
+    "static/js/2.11b77e75.chunk.js": "/hollr/static/js/2.11b77e75.chunk.js",
+    "static/js/2.11b77e75.chunk.js.map": "/hollr/static/js/2.11b77e75.chunk.js.map",
+    "static/js/3.0e0ccc29.chunk.js": "/hollr/static/js/3.0e0ccc29.chunk.js",
+    "static/js/3.0e0ccc29.chunk.js.map": "/hollr/static/js/3.0e0ccc29.chunk.js.map",
+    "index.html": "/hollr/index.html",
+    "static/css/main.a2f20751.chunk.css.map": "/hollr/static/css/main.a2f20751.chunk.css.map",
+    "static/js/2.11b77e75.chunk.js.LICENSE.txt": "/hollr/static/js/2.11b77e75.chunk.js.LICENSE.txt",
+    "static/media/close.b7a9c534.svg": "/hollr/static/media/close.b7a9c534.svg",
+    "static/media/delete.e4efcb06.svg": "/hollr/static/media/delete.e4efcb06.svg",
+    "static/media/edit.3c70b537.svg": "/hollr/static/media/edit.3c70b537.svg",
+    "static/media/github.3ba4a27c.svg": "/hollr/static/media/github.3ba4a27c.svg",
+    "static/media/home.b0189fdb.svg": "/hollr/static/media/home.b0189fdb.svg",
+    "static/media/logo.22ebc026.svg": "/hollr/static/media/logo.22ebc026.svg",
+    "static/media/speech-bubble.bbfaa137.svg": "/hollr/static/media/speech-bubble.bbfaa137.svg",
+    "static/media/user.81d7b418.svg": "/hollr/static/media/user.81d7b418.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.7c0f8da8.js",
+    "static/js/2.11b77e75.chunk.js",
+    "static/css/main.a2f20751.chunk.css",
+    "static/js/main.d4d2b9c4.chunk.js"
+  ]
+}
