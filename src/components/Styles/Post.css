@@ -106,8 +106,9 @@ textArea#commentTextArea {
     text-decoration: none;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     margin: 5px;
-    white-space: nowrap;
+    /* white-space: nowrap; */
     overflow: scroll;
+    overflow-wrap: break-word;
 }
 
 a.username:visited, a.username:link {

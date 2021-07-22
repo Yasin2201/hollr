@@ -83,11 +83,6 @@ html, body, #root {
         "sidebar allPosts";
     }
 
-    /* #allPosts {
-        align-items: flex-end;
-        padding-right: 20px;
-    } */
-
     .signIn-buttons-container {
         margin-top: 20%;
         width: 40%;
@@ -124,12 +119,12 @@ html, body, #root {
         width: 50%;
     }
 
-    h1.logoHeader {
-        display: none;
-    }
-
     .modal-box {
         width: 70%;
+    }
+
+    .greeting{
+        display: none;
     }
 }
 
@@ -139,7 +134,7 @@ html, body, #root {
         width: 60%;
     }
 
-    .greeting {
+    h1.logoHeader {
         display: none;
     }
 
