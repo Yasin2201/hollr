@@ -1,29 +1,10 @@
-import firebase from "firebase"
-import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import '../Styles/WhoToFollow.css'
 
-const WhoToFollow = ({ allUsers, currUser, navigateToProfile }) => {
-    const [following, setFollowing] = useState([])
+const WhoToFollow = ({ allUsers, currUser, following, navigateToProfile }) => {
 
     //Filter current users followers out of all available users, to create a list of recommended accounts to follow
     const usersNotFollowing = allUsers.filter(val => !following.includes(val.uid)).filter((user) => user.uid !== currUser.uid);
-
-    // Get current users complete following
-    useEffect(() => {
-        const db = firebase.firestore()
-
-        const unsubscribe = db.collection("Users").doc(currUser.uid)
-            .collection('Following').onSnapshot((querySnapshot) => {
-                const isFollowingArr = []
-                querySnapshot.forEach(doc => {
-                    isFollowingArr.push(doc.id)
-                });
-                setFollowing(isFollowingArr)
-            });
-        return unsubscribe
-
-    }, [currUser])
 
     return (
         <div id='whoToFollow-sidebar'>
